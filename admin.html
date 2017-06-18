@@ -1,0 +1,118 @@
+<!--
+MONITORING TRANSAKSI
+-->
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Baron</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/style.css">
+<!--    <link rel="stylesheet" href="css/bootstrap.css">-->
+    
+	<script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/admin.js"></script>
+    
+</head>
+	
+<body>
+<div class="container">
+	<div class="header">
+		<div class="Logo" align="center">
+			<img src="img/BARON.png">
+		</div>
+	</div>
+	
+	<div class="main">
+        <div class="kotak">
+            <h1>Register New Barber</h1><br/>
+            <span>Click button below to register new barber !</span><br/>
+            <button id="addBarber" class="button">Add Barber</button>
+        </div>
+        <hr/>
+        <div class="kotak">
+            <center>
+                <h1>Baron's 5 Recent Transactions</h1><br/>
+                <input type=text id="src_tbl" placeholder="Search ...">
+                <br/>
+                <table id="tbl_hasil" class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID Transaction</th>
+                            <th>User</th>
+                            <th>Barber</th>
+                            <th>Finish Time</th>
+                            <th>Total Transaction</th>    
+                        </tr>
+                    </thead>
+                    <tbody align="center" id="full">
+                        <tr class="tr">
+                            <td>1</td>
+                            <td class="t">t01</td>
+                            <td class="u">User</td>
+                            <td class="br">Brother Brother</td>
+                            
+                            <td class="df">12/12/2012 21:30</td>
+                            <td class="ts">40000</td>
+                        </tr>
+                        <tr class="tr">
+                            <td>2</td>
+                            <td class="t">t02</td>
+                            <td class="u">u02</td>
+                            <td class="br">b02</td>
+                            
+                            <td class="df">12/12/2012 21:30</td>
+                            <td class="ts">45000</td>
+                        </tr>
+                        <tr class="tr">
+                            <td>1</td>
+                            <td class="t">t01</td>
+                            <td class="u">u01</td>
+                            <td class="br">b01</td>
+                            
+                            <td class="df">12/12/2012 21:30</td>
+                            <td class="ts">40000</td>
+                        </tr>
+                        <tr class="tr">
+                            <td>1</td>
+                            <td class="t">t01</td>
+                            <td class="u">u01</td>
+                            <td class="br">b01</td>
+                            
+                            <td class="df">12/12/2012 21:30</td>
+                            <td class="ts">40000</td>
+                        </tr>
+                        <tr class="tr">
+                            <td>2</td>
+                            <td class="t">t02</td>
+                            <td class="u">u02</td>
+                            <td class="br">b02</td>
+                            
+                            <td class="df">12/12/2012 21:30</td>
+                            <td class="ts">45000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <span>Click button below to see detail transactions !</span><br/>
+                <button id="detailTrans" class="button">Transactions</button>
+            </center>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="icon"><img src="img/home.png"/></div> 
+        <div class="icon"><img src="img/add.png"/></div> 
+        <div class="icon"><img src="img/trans.png"/></div> 
+        <div class="icon"><img src="img/about.png"/></div> 
+    </div>
+    
+    </div>	
+    
+</body>
+</html>

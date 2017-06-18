@@ -1,0 +1,43 @@
+<html>
+  <head>
+	<meta http-equiv=REFRESH CONTENT=3;url=login.html>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="js/jquery-3.1.1.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	.logomid 
+	{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-moz-transform: translateX(-50%) translateY(-50%);
+		-webkit-transform: translateX(-50%) translateY(-50%);
+		transform: translateX(-50%) translateY(-50%);
+	}
+	
+	.imglogo {
+    max-width: 100%;
+	width : 300px;
+    height: auto;
+	}
+	
+	</style>
+	
+  </head>
+  
+  
+  
+  <body bgcolor="#fff">
+    <div id="splash" align="center"  style="display:none;" class="logomid">
+	<img src="img/logo.jpg" class="imglogo"/>
+	</div>
+
+    <script>
+      $().ready(function() {
+        $("#splash").fadeIn(1500);
+      });
+    </script>
+	
+	
+  </body>
+</html>

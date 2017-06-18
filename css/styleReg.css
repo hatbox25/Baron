@@ -1,0 +1,15 @@
+.hasil_cari{
+    text-align: left;
+    background: url(../img/pixel_weave.png);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.hasil_cari span{
+    margin: 5px;
+}
+
+.hide{
+    position: absolute;
+    display: none;
+}

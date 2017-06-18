@@ -1,0 +1,369 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	background: white;
+	font-family: sans-serif;
+	font-size: 15px;
+	
+}
+.forgot {
+	margin: 158px 20px 6px;
+    height: 100%;
+    position: absolute;
+    right: 8px;
+    top: 0;
+}
+p{
+	margin-bottom: 5px;
+}
+h3{
+	margin-bottom: 20px;
+	border-bottom: 1px solid #aaa;
+}
+h2{
+	font-family: "Comic Sans";
+
+
+}
+
+a{
+	text-decoration: none;
+	color: #333;
+}
+
+a:hover{
+	color: #666;
+}
+
+.container{
+	width:100%;
+	margin: 0;
+	background: white;
+	overflow: hidden;
+	max-width:100%;
+}
+
+.header{
+    z-index: 25;
+    position: fixed;
+    text-align: center;
+	width:100%;
+	top:0;
+	margin-bottom: 90%;
+    background-image:url('../img/pixel_weave.png')!important;
+	
+}
+.header .Logo{
+	padding : 10px 10px 10px 10px;
+    max-height:  height: 10%;
+}
+
+	
+.header a{
+	max-width: 15%;
+	height: auto;
+	display: block;
+	float:right;
+}
+
+
+.header img{
+	max-height: 10%;
+	height: auto;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+#hairstyle{
+	max-width: 80%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.main{
+	width: 100%;
+	text-align:center;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	background: white;
+	color: black;
+}
+.main img{
+	max-width: 100%;
+	height: auto;
+}
+.main a{
+	font-weight: bold;
+}
+.filter{
+    background-color: #f6f6f6;
+    border-color: #ddd;
+    color: #333;
+    text-shadow: 0 1px 0 #f3f3f3;
+}
+
+
+.all{
+	width:100%;
+	height:140px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	background: #ec2222;
+	border:none;
+}
+
+
+
+.congrats{
+	width: 90%;
+	border-style : solid;
+	border-width: 5px;
+	border-color: black;
+}
+input[type=text],[type=password],[type=date],[type=time],[type=submit],[type=email],[type=number],[type=label], select {
+    width: 100%;
+    padding: 14px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 3px solid #C0C0C0;
+    border-radius: 4px;
+    box-sizing: border-box;
+	background-color: white; 
+	text-shadow: black;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+	color: black;
+}
+
+.bottom a{
+	color: white;
+}
+
+.button {
+    padding: 5px 10px;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    background-image:url('../img/pixel_weave.png')!important;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    color: black ;
+}
+
+.button:active {
+    background-color: red;
+    box-shadow: 0 5px #ffff;
+    transform: translateY(4px);
+}
+.buttonLeft {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.button3 {width: 100%;}
+
+
+.footer{
+	position: fixed;
+    text-align: center;
+    padding-top: 10px;
+	width:100%;
+	bottom:0;
+	margin-top: 90%;
+	background-image:url('../img/pixel_weave.png')!important;
+	
+}
+
+.footer span{
+    vertical-align: middle;
+}
+
+	.icon{
+		background-image:url('../img/pixel_weave.png')!important;
+		width:25%;
+		padding: 0;
+		margin: 0;
+        padding-bottom: 10px;
+		float: left;
+	}
+	.icon img {
+		background-image:url('../img/pixel_weave.png')!important;
+		max-width: 15%;
+		height: auto;
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+/*    KOTAK     */
+.kotak {
+    position: relative;
+    margin:10px auto;
+    width: 100%;
+    height: auto
+    border-radius: 3px;
+    border: solid rgba(0, 0, 0, 0.4);
+}
+.kotak h1 {
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  color: #000   ;
+  text-align: center;
+  background: url('../img/pixel_weave.png');
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.kotak button {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Open Sans',sans-serif;
+  font-weight: bold;
+  padding: 12px 0;
+  letter-spacing: 0;
+  box-shadow: inset 0px 0px 0px 0px #1abc9c;
+  color: #000;
+  text-shadow: none;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  -webkit-animation: shadowFadeOut 0.4s;
+  -moz-animation: shadowFadeOut 0.4s;
+}
+
+.kotak button:hover, .kotak button:focus {
+  color: #fff;
+  box-shadow: inset 0px 46px 0px 0px #000;
+  -webkit-animation: shadowFade 0.4s;
+  -moz-animation: shadowFade 0.4s;
+}
+
+
+/************************************************************************************
+MEDIA QUERIES
+*************************************************************************************/
+/* untuk ukuran 1080px kebawah */
+@media screen and (max-width: 1080px) {
+	.container {
+		width: 100%;
+	}
+
+	.header, .footer{
+		max-width: 100%;
+        z-index: 25;
+		float: none;
+	}
+
+	.header img{
+		max-width: 40%;
+		float: none;
+	}
+
+	.main {
+		width: 100%;
+		float: none;
+	}
+
+	.icon img {
+		width: 50%;
+		float: none;
+	}
+}
+
+/* untuk ukuran layar 700px kebawah */
+@media screen and (max-width: 780px) {
+
+	.container {
+		width: 100%;
+	}
+
+	.header,
+	.footer{
+		max-width: auto;
+		float: none;
+	}
+
+	.header img{
+		max-width: 100%;
+		float:none;
+	}
+
+	.main {
+		max-width: 90%;
+		float: none;
+	}
+
+	.icon img {
+		max-width: 50%;
+		float:none;
+	}
+	
+	input[type=text],[type=password],[type=date],[type=time],[type=submit], select {
+    width: 100%;
+    padding: 15px 15px;
+    margin: 10px 0;
+}
+
+/* untuk ukuran layar 580px kebawah */
+@media screen and (max-width: 580px) {
+	
+	.container {
+		width: 100%;
+	}
+
+	.header,
+	.footer{
+		max-width: auto;
+		float: none;
+	}
+
+	.header img{
+		max-width: 100%;
+		float:none;
+	}
+
+	.main {
+		max-width: 90%;
+		float: none;
+	}
+
+	.icon img {
+		max-width: 50%;
+		float:none;
+	}
+	
+	input[type=text],[type=password],[type=date],[type=time],[type=submit], select {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 5px 0;
+	}
+}

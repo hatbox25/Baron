@@ -1,0 +1,141 @@
+.myUL .pil_barber,.pil_style{ 
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+
+
+#src_barber,#src_style{
+    background-image: url('../img/search.png'); /* Add a search icon to input */
+    background-size: 20px 20px;
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+
+.myUL {
+    /* Remove default list styling */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.myUL li{
+    text-align: left;
+    border: 1px solid #ddd; /* Add a border to all links */
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6; /* Grey background color */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove default text underline */
+    font-size: 18px; /* Increase the font-size */
+    color: black; /* Add a black text color */
+    display: block; /* Make it into a block element to fill the whole list */
+}
+.myUL li:hover{
+    background-color: #eee; /* Add a hover effect to all links, except for headers */
+}
+.myUL > label > li > img{
+    vertical-align: middle;
+    border-radius: 8px;
+}
+.myUL > label > li > .sp_barber , .sp_style{
+    padding-left: 10px;
+}
+
+.myUL > label > li > .price{
+    background-color: #b8b8b8;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:10px;
+    font-size: 10px;
+    padding-right:10px;
+    width: 50px;
+    border-radius: 8px;
+    float: right;
+    vertical-align: middle;
+    text-align: left;
+}
+
+#b_hasil{
+    font-size: 20px;
+}
+
+.b_Hasil{
+    text-align: left;
+}
+
+#st_hasil{
+    font-size: 20px;
+}
+
+.st_hasil{
+    text-align: left;
+}
+
+.hide{
+    position: absolute;
+    display: none;
+}
+
+#s_isian{
+    text-align: left;
+}
+
+#sum_order{
+    text-align: left;
+}
+
+.sum_img{
+    display: flex;
+    display: -webkit-flex;
+    width:100%;
+    height: 100%;
+    text-align: center;
+}
+
+.sum_img .barber,.style {
+    vertical-align: middle;
+    -webkit-flex: 1;  /* Safari 6.1+ */
+    -ms-flex: 1;  /* IE 10 */    
+    flex: 1;
+}
+
+.sum_img .barber .disp,.sum_img .style .disp{
+    margin:5px;
+    background: url(../img/pixel_weave.png);
+    border-radius:5px; 
+}
+
+.sum_img .barber .disp img,
+.sum_img .style .disp img{
+    border-radius: 10px;
+    width:70%;
+    padding: 5px;
+}
+
+.sum_text{
+    background: url(../img/pixel_weave.png);
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.sum_text tr{
+    height: 30px;
+    vertical-align: top;
+}
+
+.sum_text tr .td{
+    padding-left: 5px;
+    width: 400px;
+}
+
+.sum_text tr .ts{
+    padding-left: 5px;
+    padding-right: 10px;
+    width: 100px;
+}
+
+

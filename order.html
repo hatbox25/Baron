@@ -1,0 +1,255 @@
+<!--
+    ORDER
+
+    ONGOING
+-->
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Baron</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/styleORD.css">
+    <link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jquery.countdown.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/order-interface.js"></script>
+    
+</head>
+	
+<body>
+<form  method="post">
+<div id="pesan" class="container">
+	<div class="header">
+		<div class="Logo" align="center">
+			<img src="img/BARON.png">
+		</div>
+	</div>
+    
+    <div id="isi" class="main">
+        <br/>
+        <h2>Order New Service</h2>
+        <br/>
+        
+        
+            <div id="s_barber">
+                <div class="b_Hasil">
+                    <span id="b_hasil">Select Barber !</span><br/>
+                </div>
+                <input type="text" id="src_barber" placeholder="Search for barber..">
+
+                <ul id="ul_barber" class="myUL">
+                    <label  onclick="showHasil('#b_hasil','.pil_barber:checked','Barber Selected : ')">
+                        <li>
+                            <input type="radio" name="fb" value="Agnes" class="pil_barber">
+                            <img src="img/perry.png" width="20%">
+                            <span class="sp_barber">Agnes</span>
+                        </li>
+                    </label>
+                    <label onclick="showHasil('#b_hasil','.pil_barber:checked','Barber Selected : ')">
+                        <li>
+                            <input type="radio" name="fb" value="Billy" class="pil_barber"/>
+                            <img src="img/adam.jpg" width="20%">
+                            <span class="sp_barber">Billy</span>
+                        </li>
+                    </label>
+                    <label onclick="showHasil('#b_hasil','.pil_barber:checked','Barber Selected : ')">
+                        <li>
+                            <input type="radio" name="fb" value="Calvin" class="pil_barber"/>
+                            <img src="img/mike.png" width="20%">
+                            <span class="sp_barber">Calvin</span>                    
+                        </li>
+                    </label>
+                </ul>
+                <br/>
+                <input id="toStyle" type="button" class="button" width="100%" value="NEXT" >                
+            </div>
+            <div id="s_style" class="hide">
+                <div class="st_hasil">
+                    <span id="st_hasil">Select Style !</span><br/>
+                </div>
+                <input type="text" id="src_style" placeholder="Search for style..">
+                <ul id="ul_style" class="myUL">
+                    <label  onclick="showHasil('#st_hasil','.pil_style:checked','Style Selected : ')">
+                        <li>
+                            <input type="radio" name="fb" value="Agnes" class="pil_style">
+                            <img src="img/perry.png" width="20%">
+                            <span class="sp_style">Agnes</span>
+                            <span class="price">Rp 15.000</span>
+                        </li>
+                    </label>
+                    <label onclick="showHasil('#st_hasil','.pil_style:checked','Style Selected : ')">
+                        <li>
+                            <input type="radio" name="fb" value="Billy" class="pil_style"/>
+                            <img src="img/adam.jpg" width="20%">
+                            <span class="sp_style">Billy</span>
+                            <span class="price">Rp 5.000</span>
+                        </li>
+                    </label>
+                    <label onclick="showHasil('#st_hasil','.pil_style:checked','Style Selected : ')">
+                        <li>
+                            <input type="radio" name="fb" value="Calvin" class="pil_style"/>
+                            <img src="img/mike.png" width="20%">
+                            <span class="sp_style">Calvin</span>
+                            <span class="price">Rp 15.000</span>
+                        </li>
+                    </label>
+                </ul>
+                <br/>
+                <input id="toBarber" type="button" class="button" value="PREV">
+                <input id="toForm" type="button" class="button" width="100%" value="NEXT" >
+            </div>
+            <div id="s_isian" class="hide">
+                <span>Please fill this form below to complete your order !</span>
+                <br/>
+                <label>
+                    <br/>
+                    <input type="text" name="address" placeholder="Address" id="address" required>
+                </label>
+                <label>
+                    <br/>
+                    <input type="number" name="phone" placeholder="Phone number" id="phone" required>
+                </label>
+                <div style="text-align:center;">
+                    <input type="button" class="button" id="sudah" value="Done">
+                </div>
+            </div>
+        
+    </div>
+    <div id="summary" class="hide">
+        <br/>
+            <h2>Order Summary</h2>
+        <br/>
+        
+        <div id="sum_order">
+            <div class="sum_img">
+                <div class="barber">
+                    <div class="disp">
+                        <h4>Barber</h4>
+                        <img src="img/adam.jpg"><br/>
+                        <span>Adam</span>
+                    </div>
+                </div>
+                <div class="style">
+                    <div class="disp">
+                        <h4>Style</h4>
+                        <img src="img/adam.jpg"><br/>
+                        <span>Adam</span>
+                    </div>
+                </div>
+            </div>
+            <table class="sum_text">
+                <tr>
+                    <td class="ts">Name</td>
+                    <td>:</td>
+                    <td class="td">Hatbox</td>
+                </tr>
+                <tr>
+                    <td class="ts">Address</td>
+                    <td>:</td>
+                    <td class="td">Jatinangor</td>
+                </tr>
+                <tr>
+                    <td class="ts">Phone</td>
+                    <td>:</td>
+                    <td class="td">081081081081</td>
+                </tr>
+                <tr>
+                    <td class="ts">Order date</td>
+                    <td>:</td>
+                    <td class="td">May 31, 2017</td>
+                </tr>
+                <tr>
+                    <td class="ts">Order time</td>
+                    <td>:</td>
+                    <td class="td">07:30</td>
+                </tr>
+            </table>
+            <center>
+                <br/>
+                <input type="button" class="button" id="proses" value="Proceed">
+            </center>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="icon"><img src="img/home.png"/></div> 
+        <div class="icon"><img src="img/order-sel.png"/></div> 
+        <div class="icon"><img src="img/trans.png"/></div> 
+        <div class="icon"><img src="img/about.png"/></div> 
+    </div>
+</div>
+</form>    
+<div id="processing" class="hide">
+    <div class="header">
+		<div class="Logo" align="center">
+			<img src="img/BARON.png">
+		</div>
+	</div>
+    
+    <div class="main">
+        <div id="tunggu">
+            <br/>
+            <h2>Processing your order</h2>
+            <br/>
+            <center>
+                <br/>
+                <div class="loader"></div>
+                <br/>
+                <br/>
+                <span>Please wait for barber confirmation ...</span>
+            </center>
+                            <style>
+                                .loader {
+                                  border: 16px solid #f3f3f3;
+                                  border-radius: 50%;
+                                  border-top: 16px solid #d8d8d8;
+                                  width: 80px;
+                                  height: 80px;
+                                  -webkit-animation: spin 2s linear infinite;
+                                  animation: spin 2s linear infinite;
+                                }
+
+                                @-webkit-keyframes spin {
+                                  0% { -webkit-transform: rotate(0deg); }
+                                  100% { -webkit-transform: rotate(360deg); }
+                                }
+
+                                @keyframes spin {
+                                  0% { transform: rotate(0deg); }
+                                  100% { transform: rotate(360deg); }
+                                }
+                            </style>
+        </div>
+        
+        <div id="cukur">
+            <br/>
+            <h2>Barber Confirmed !</h2>
+            <br/>
+            <center>
+                <span>Please wait, your barber is coming to you ...</span>
+                <br/><br/>
+                <img src="img/adam.jpg" width="50%" style="border:5px solid rgba(0,0,0,0.4); border-radius:5px;">
+                <br/><br/>
+                <span><strong>Adam</strong></span><br/><br/>
+                <span>082082082082</span>
+                <br/>
+                <br/>
+                <div>Order bisa dibatalkan setelah : <span id="timer"></span></div><br/>
+                <input type="button" class="button" id="batal" value="Cancel Order" disabled="true">
+            </center>
+        </div>
+        
+    
+    </div>
+    <div class="footer">
+        <div class="icon"><img src="img/home.png"/></div> 
+        <div class="icon"><img src="img/order-sel.png"/></div> 
+        <div class="icon"><img src="img/trans.png"/></div> 
+        <div class="icon"><img src="img/about.png"/></div> 
+    </div>
+</div>
+</body>   
+</html>
