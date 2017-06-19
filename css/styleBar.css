@@ -111,11 +111,11 @@ input:checked + .slider:before {
     vertical-align: top;
 }
 
-table tr td{
+.up_img table tr td{
     width:250px;
 }
 
-table tr td img{
+.up_img table tr td img{
     margin: 10px;
     width: 80%;
     border-radius: 25px;

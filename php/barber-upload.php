@@ -18,13 +18,27 @@
             {
                 if (file_exists("upload/" . $_FILES["file"]["name"])) {
                     echo $_FILES["file"]["name"] . "already exists.";
+                    unlink("upload/" . $_FILES["file"]["name"]);
+                    
+                    $temp = explode(".", $_FILES["file"]["name"]);
+                    $newfilename = $id . '.' . end($temp);
+                    move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/" . $newfilename);
+//                    $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
+//                    $targetPath = "../upload/".$_FILES['file']['name']; // Target path where file is to be stored
+//                    move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
+                    $sql = "UPDATE tb_barber SET barber_img = '$newfilename' WHERE id_user='$id'";
+                    $result = mysqli_query($db,$sql);
+                    echo "Image Uploaded Successfully...!!";
                 }
                 else
                 {
-                    $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
-                    $targetPath = "../upload/".$_FILES['file']['name']; // Target path where file is to be stored
-                    move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
-                    $sql = "UPDATE tb_barber SET barber_img = '$sourcePath' WHERE id_user='$id'";
+                    $temp = explode(".", $_FILES["file"]["name"]);
+                    $newfilename = $id . '.' . end($temp);
+                    move_uploaded_file($_FILES["file"]["tmp_name"], "../upload/" . $newfilename);
+//                    $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
+//                    $targetPath = "../upload/".$_FILES['file']['name']; // Target path where file is to be stored
+//                    move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
+                    $sql = "UPDATE tb_barber SET barber_img = '$newfilename' WHERE id_user='$id'";
                     $result = mysqli_query($db,$sql);
                     echo "Image Uploaded Successfully...!!";
                 }
