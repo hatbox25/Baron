@@ -1,7 +1,9 @@
 <?php
+    require_once 'config.php';
+
     if(isset($_FILES["file"]["type"]))
     {
-        $teks = $_POST['tks'];
+        $id = $_POST['id'];
         $validextensions = array("jpeg", "jpg", "png");
         $temporary = explode(".", $_FILES["file"]["name"]);
         $file_extension = end($temporary);
@@ -10,30 +12,27 @@
         && in_array($file_extension, $validextensions)) {
             if ($_FILES["file"]["error"] > 0)
             {
-                echo "Return Code: " . $_FILES["file"]["error"] . "<br/><br/>";
+                echo "Return Code: " . $_FILES["file"]["error"];
             }
             else
             {
                 if (file_exists("upload/" . $_FILES["file"]["name"])) {
-                    echo $_FILES["file"]["name"] . " <span id='invalid'><b>already exists.</b></span> ";
+                    echo $_FILES["file"]["name"] . "already exists.";
                 }
                 else
                 {
                     $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
-                    $targetPath = "upload/".$_FILES['file']['name']; // Target path where file is to be stored
+                    $targetPath = "../upload/".$_FILES['file']['name']; // Target path where file is to be stored
                     move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
-                    echo "<span id='success'>Image Uploaded Successfully...!!</span><br/>";
-                    echo "<br/><b>File Name:</b> " . $_FILES["file"]["name"] . "<br>";
-                    echo "<b>Type:</b> " . $_FILES["file"]["type"] . "<br>";
-                    echo "<b>Size:</b> " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
-                    echo "<b>Temp file:</b> " . $_FILES["file"]["tmp_name"] . "<br>";
-                    echo "<span>".$teks."<span>";
+                    $sql = "UPDATE tb_barber SET barber_img = '$sourcePath' WHERE id_user='$id'";
+                    $result = mysqli_query($db,$sql);
+                    echo "Image Uploaded Successfully...!!";
                 }
             }
         }
         else
         {
-            echo "<span id='invalid'>***Invalid file Size or Type***<span>";
+            echo "***Invalid file Size or Type***";
         }
     }
 ?>

@@ -8,7 +8,7 @@
         $userEmail = $_POST['email'];
         $userPassword = md5($_POST['password']);
 		
-        $query = "INSERT INTO tb_users(fullName,userEmail,userPassword,hak_akses) VALUES('$fullName', '$userEmail', '$userPassword', 'user')";
+        $query = "INSERT INTO tb_users(username,email,password,akses) VALUES('$fullName', '$userEmail', '$userPassword', 'user')";
         $result = mysqli_query($db,$query);
 		// check for successfull registration
         if ($result) {

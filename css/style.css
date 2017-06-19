@@ -127,7 +127,7 @@ a:hover{
 	border-width: 5px;
 	border-color: black;
 }
-input[type=text],[type=password],[type=date],[type=time],[type=submit],[type=email],[type=number],[type=label], select {
+input[type=text],[type=password],[type=date],[type=time],[type=submit],[type=email],[type=number],[type=label],[type=file], select {
     width: 100%;
     padding: 14px 20px;
     margin: 8px 0;

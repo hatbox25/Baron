@@ -1,5 +1,6 @@
 $('document').ready(function(){ 		 
     var key = "";
+    var id = "";
     
     $('#btn_pros').addClass('hide');
     $('#btn_cari').click(function(){
@@ -20,9 +21,10 @@ $('document').ready(function(){
                 }else{
                     var result = $.parseJSON(a);
                     $.each(result,function(i,field){
+                        id = field.id_user;
                         $('#btn_cari').prop('disabled',true);
                         $('#res').empty();
-                        $('#res').append("<br/><h3>Detail Acount</h3><div class='hasil_cari'><span>UserName  : "+field.fullName+"</span></br></br><span>UserEmail : "+field.userEmail+"</span></div><br/><span>Click button below to convert user become barber !</span><br/><br/><br/>");
+                        $('#res').append("<br/><h3>Detail Acount</h3><div class='hasil_cari'><span>UserName  : "+field.username+"</span></br></br><span>UserEmail : "+field.email+"</span></div><br/><span>Click button below to convert user become barber !</span><br/><br/><br/>");
                         $('#btn_pros').removeClass('hide')
                     });
                 }
@@ -40,7 +42,8 @@ $('document').ready(function(){
             url:'./php/register-barber.php',
             data:{
                 "cari":1,
-                "key":key
+                "key":key,
+                "id":id
             },
             async:false,
             success:function(a){

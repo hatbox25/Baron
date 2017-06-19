@@ -7,7 +7,7 @@
 	if (isset($_POST['cari'])){
 		$key = $_POST['key'];
 				
-		$sql = "SELECT * FROM tb_users WHERE userEmail='$key'";
+		$sql = "SELECT * FROM tb_users WHERE email='$key' AND akses='user'";
 		$result = mysqli_query($db,$sql);
 		$num_row = mysqli_num_rows($result);
         while($row=mysqli_fetch_object($result)){

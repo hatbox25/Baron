@@ -8,7 +8,7 @@
 		$userEmail = $_POST['email'];
 		$userPass = md5($_POST['password']);
 		
-		$sql = "SELECT * FROM tb_users WHERE userEmail='$userEmail' AND userPassword='$userPass'";
+		$sql = "SELECT * FROM tb_users WHERE email='$userEmail' AND password='$userPass'";
 		$result = mysqli_query($db,$sql);
 		$num_row = mysqli_num_rows($result);
         while($row=mysqli_fetch_object($result)){

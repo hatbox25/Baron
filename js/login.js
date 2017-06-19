@@ -57,13 +57,11 @@ function submitForm(){
            }else{
                var result = $.parseJSON(a);
                $.each(result,function(i,field){
-                   if(field.hak_akses === 'user'){
-                       sessionStorage.setItem('userId',field.userId);
-                       sessionStorage.setItem('role',field.hak_akses);
+                   if(field.akses === 'user'){
+                       sessionStorage.setItem('userId',field.id_user);
                        window.location = 'home.html';
                    }else{
-                       sessionStorage.setItem('userId',field.userId);
-                       sessionStorage.setItem('role',field.hak_akses);
+                       sessionStorage.setItem('userId',field.id_user);
                        window.location = 'barber.html';
                    }
                });
