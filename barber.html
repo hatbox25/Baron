@@ -11,7 +11,6 @@
 </head>
 	
 <body>
-<form  method="post">
 <div id="normal" class="container">
 	<div class="header">
 		<div class="Logo" align="center">
@@ -19,45 +18,7 @@
 		</div>
 	</div>
     
-    <div id="utama" class="main">
-<!--
-        <img class="img" src="img/adam.jpg">
-        <h3>Adam</h3>
-        
-        <div class="detil">
-            <table class="tog">
-                <tr>
-                    <td class="l">Not Available</td>
-                    <td>
-                        <label class="switch">
-                            <input type="checkbox" id="aktif">
-                            <div class="slider round"></div>
-                        </label>
-                    </td>
-                    <td class="r">Available</td>
-                </tr>
-            </table>
-            <br/>
-            <table>
-                <tr>
-                    <td class="q">Address : </td>
-                    <td colspan="3">JatinangorJatinangorJatinangor Jatinangor Jatinangor</td>
-                </tr>
-                <tr>
-                    <td class="q">Phone : </td>
-                    <td colspan="3">081081081081</td>
-                </tr>
-                <tr>
-                    <td class="q">About : </td>
-                    <td colspan="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac eros a felis auctor bibendum sed a nulla. Sed consequat, tortor at posuere cursus, magna nunc congue lectus, et pellentesque sem urna luctus neque.</td>
-                </tr>
-            </table>
-        </div>
-        <br/>
-        <input type="button" value="Edit Detail" class="button">
-        <input type="button" value="Hair Style" class="button">
--->  
-    </div>
+    <div id="utama" class="main"></div>
     <div id="edit" class="main">
         <br/>
         <h2>Update your profile</h2>
@@ -65,7 +26,7 @@
         <div class="up_img">
             <table>
             <tr>
-                <td><img src="img/adam.jpg"></td>
+                <td id="prof_pict"></td>
                 <td>
                     <div id="opt">
                         <span>Click button below to change profile image !</span><br/><br/>
@@ -76,7 +37,7 @@
                             <div id="selectImage">
                                 <label>Select Your Image</label><br/>
                                 <input type="file" name="file" id="file" required />
-                                <input type="submit" id="btn" value="Upload" class="button" />
+                                <input type="button" id="btn" value="Upload" class="button" />
                             </div>
                         </form>
                     </div>    
@@ -84,23 +45,67 @@
             </tr>
             </table>
         </div>
+        <div>
+            <h3 id="name">Brother</h3>
+            <div class="teks" id="detilUP">
+            </div><br/>
+        </div>
+        <input type="button" id="cancel" class="button" value="Cancel">
+        <input type="button" id="up_detil" class="button" value="Update">
     </div>
-    
-    <div class="footer">
-        <div class="icon"><a href="home.html"><img src="img/home.png"/></a></div> 
-        <div class="icon"><a href="barber.html"><img src="img/profile-sel.png"/></a></div> 
-        <div class="icon"><a href="transaction.html"><img src="img/trans-sel.png"/></a></div> 
-        <div class="icon"><a href="about.html"><img src="img/about.png"/></a></div> 
+    <div class="main" id="adapesan">
+        <br/>
+        <h2>You Have New Service Request </h2>
+        <img src="img/alert.png">
+        <div class="teks">
+            <table class="detil">
+                <tr>
+                    <td class="q">Name : </td>
+                    <td colspan="3">'+field.barber_addr+'</td>
+                </tr>
+                <tr>
+                    <td class="q">Address : </td>
+                    <td colspan="3">'+field.barber_addr+'</td>
+                </tr>
+                <tr>
+                    <td class="q">Phone : </td>
+                    <td colspan="3">'+field.barber_phone+'</td>
+                </tr>
+                <tr>
+                    <td class="q">Style : </td>
+                    <td colspan="3">'+field.barber_about+'</td>
+                </tr>
+            </table>
+        </div>
+        <input type="button" class="button" value="Accept" id="acpt">
+        <input type="button" class="button" value="Decline" id="decl">
+        
     </div>
-</div>
-<div id="pesan" class="container">
-	<div class="header">
-		<div class="Logo" align="center">
-			<img src="img/BARON.png">
-		</div>
-	</div>
-    
-    <div class="main">
+    <div class="main" id="cukur">
+        <br/>
+        <h3>Ongoing Service</h3>
+        <div class="teks">
+            <table class="detil">
+                <tr>
+                    <td class="q">Name : </td>
+                    <td colspan="3">'+field.barber_addr+'</td>
+                </tr>
+                <tr>
+                    <td class="q">Address : </td>
+                    <td colspan="3">'+field.barber_addr+'</td>
+                </tr>
+                <tr>
+                    <td class="q">Phone : </td>
+                    <td colspan="3">'+field.barber_phone+'</td>
+                </tr>
+                <tr>
+                    <td class="q">Style : </td>
+                    <td colspan="3">'+field.barber_about+'</td>
+                </tr>
+            </table>
+        </div>
+        <input type="button" class="button" value="Begin Service" id="begin">
+        <input type="button" class="button" value="Finished" id="end" disabled="true">
         
     </div>
     

@@ -1,0 +1,136 @@
+#src_style{
+    background-image: url('../img/search.png'); /* Add a search icon to input */
+    background-size: 20px 20px;
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 95%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+
+#st_file,#st_name,#st_price{
+    width: 95%;
+    padding: 12px 20px 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 3px solid #C0C0C0;
+    border-radius: 4px;
+    box-sizing: border-box;
+	background-color: white; 
+	text-shadow: black;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+	color: black;
+}
+
+.myUL {
+    /* Remove default list styling */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.myUL li{
+    text-align: left;
+    border: 1px solid #ddd; /* Add a border to all links */
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6; /* Grey background color */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove default text underline */
+    font-size: 18px; /* Increase the font-size */
+    color: black; /* Add a black text color */
+    display: block; /* Make it into a block element to fill the whole list */
+}
+.myUL li:hover{
+    background-color: #eee; /* Add a hover effect to all links, except for headers */
+}
+.myUL > label > li > img{
+    vertical-align: middle;
+    border-radius: 8px;
+}
+.myUL > label > li > .sp_barber , .sp_style{
+    padding-left: 10px;
+}
+
+.myUL > label > li > .price{
+    background-color: #b8b8b8;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:10px;
+    font-size: 10px;
+    padding-right:10px;
+    width: 50px;
+    border-radius: 8px;
+    float: right;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.hide{
+    position: absolute;
+    display: none;
+}
+
+.teks{
+    text-align: left;
+    padding-left: 5%;
+}
+
+#pop img{
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#pop .toggle{
+    color:#FFFFFF; 
+    float:left; 
+    padding:5px; 
+    position:absolute; 
+    top:0px; 
+    right:2px;
+    font-size:20px;
+}
+
+#pop h3{
+	margin-bottom: 10px;
+	border-bottom: 1px solid #777;
+    color: black;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#pop #pop_st_price{
+    color: black;
+}
+
+.col {
+    color: black;
+    width: 50%;
+    border-top: solid 1px white;
+}
+
+#hapus{
+    border-right: solid 1px white;
+}
+
+#baris {
+    line-height: 40px;
+    margin-left:0px;margin-right:0px;
+    color:#fff;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    display: flex;
+    bottom: 1px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}

@@ -1,0 +1,94 @@
+<html>
+<head>
+	<title>Baron</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleST.css">
+	<script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/style.js"></script>
+    
+</head>
+	
+<body>
+<div id="normal" class="container">
+    
+    
+	<div class="header">
+		<div class="Logo" align="center">
+			<img src="img/BARON.png">
+		</div>
+	</div>
+    
+    <div class="main" id="utama">
+        
+        <div id="pop">    
+            <img src="img/adam.jpg">
+            <span class="toggle"><strong>X</strong></span>
+            <br/>
+            <h3 id="pop_st_name">Style</h3>
+            <span id="pop_st_price">Rp 10.000</span>
+            <br/>
+            <br/>
+            <div class="row" id="baris">
+                <div class="col" id="hapus">HAPUS</div>
+                <div class="col" id="edit">EDIT</div>
+            </div>
+        </div>
+        <div class="kotak">
+            <h1 id="reg">Register New Hair Style</h1>
+            <div id="showREG">
+                <br/>
+                <form id="up_style" method="post" enctype="multipart/form-data">
+                    <div class="teks">
+                        <span>Style Image</span><br/>
+                        <input type="file" name="st_file" id="st_file"><br/>
+                        <span>Style Name</span><br/>
+                        <input type="text" name="st_name" placeholder="Style Name" id="st_name"><br/>
+                        <span>Style Price</span><br/>
+                        <input type="number" name="st_price" placeholder="Style Price on Rupiah" id="st_price"><br/>
+                    </div>
+                </form>
+                <input type="button" id="addStyle" class="button" value="Register"><br/><br/>
+            </div>
+        </div>
+        <div class="kotak">
+            <h1 id="list">List Hair Style</h1>
+            <div id="showLIST">
+                <br/>
+                <input type="text" id="src_style" placeholder="Search for style..">
+                <ul id="ul_style" class="myUL">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main" id="edit">
+        <div class="kotak">
+            <h1 id="reg">Edit Selected Hair Style</h1>
+            <div id="showREG">
+                <br/>
+                <form id="up_style" method="post" enctype="multipart/form-data">
+                    <div class="teks">
+                        <span>Style Image</span><br/>
+                        <input type="file" name="st_file" id="st_file"><br/>
+                        <span>Style Name</span><br/>
+                        <input type="text" name="st_name" placeholder="Style Name" id="st_name"><br/>
+                        <span>Style Price</span><br/>
+                        <input type="number" name="st_price" placeholder="Style Price on Rupiah" id="st_price"><br/>
+                    </div>
+                </form>
+                <input type="button" id="addStyle" class="button" value="Register"><br/><br/>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="footer">
+        <div class="icon"><a href="home.html"><img src="img/home.png"/></a></div> 
+        <div class="icon"><a href="barber.html"><img src="img/profile-sel.png"/></a></div> 
+        <div class="icon"><a href="transaction.html"><img src="img/trans-sel.png"/></a></div> 
+        <div class="icon"><a href="about.html"><img src="img/about.png"/></a></div> 
+    </div>
+</div>
+</body>   
+</html>

@@ -1,10 +1,13 @@
 <?php
     require_once 'config.php';
 
-    if(isset($_POST['get'])){
-        $id= $_POST['id'];
+    if(isset($_POST['up'])){
+        $id = $_POST['id'];
+        $addr = $_POST['address'];
+        $phone = $_POST['phone'];
+        $about = $_POST['about'];
         $response = array();
-		$sql = "SELECT b.id_barber,b.barber_img,b.barber_addr,b.barber_phone,b.barber_about,u.username FROM tb_barber b, tb_users u WHERE b.id_user = u.id_user AND b.id_user = '$id'";
+		$sql = "UPDATE tb_barber SET barber_addr='$addr',barber_phone='$phone',barber_about='$about' WHERE id_user = '$id'";
         $result = mysqli_query($db,$sql);
         $num_row = mysqli_num_rows($result);
         while($row=mysqli_fetch_object($result)){

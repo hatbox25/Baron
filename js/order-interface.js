@@ -13,7 +13,7 @@ $(document).ready(function(){
     var now = new Date();
     
     $("#src_barber").keyup(function(){
-        showList('src_barber','ul_barber','sp_barber');
+        showList('src_barber','ul_barber','sp_barber',null);
     });
     
     $("#toStyle").click(function(){
@@ -29,7 +29,7 @@ $(document).ready(function(){
     });  
 
     $("#src_style").keyup(function(){
-        showList('src_style','ul_style','sp_style');
+        showList('src_style','ul_style','sp_style','price');
     });
     
     $("#toBarber").click(function(){
@@ -92,8 +92,8 @@ function showHasil(x,y,z){
     $(x).append(z+selected.val());
 }
 
-function showList(x,y,z){
-    var input, filter, ul, li, a, i;
+function showList(x,y,z,op){
+    var input, filter, ul, li, a, b, i;
     input = document.getElementById(x);
     filter = input.value.toUpperCase();
     ul = document.getElementById(y);
@@ -101,12 +101,23 @@ function showList(x,y,z){
 
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByClassName(z)[0];
-        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
+        if(op == null){
+            a = li[i].getElementsByClassName(z)[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            } 
+        }else{
+            a = li[i].getElementsByClassName(z)[0];
+            b = li[i].getElementsByClassName(op)[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1 || b.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            } 
         }
+        
     }
 }
 
