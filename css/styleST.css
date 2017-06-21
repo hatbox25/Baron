@@ -10,7 +10,7 @@
     margin-bottom: 12px; /* Add some space below the input */
 }
 
-#st_file,#st_name,#st_price{
+#st_file,#st_name,#st_price,#u_st_file,#u_st_name,#u_st_price{
     width: 95%;
     padding: 12px 20px 12px;
     margin: 8px 0;
@@ -79,6 +79,11 @@
 }
 
 .teks{
+    text-align: left;
+    padding-left: 5%;
+}
+
+.teksE{
     text-align: left;
     padding-left: 5%;
 }

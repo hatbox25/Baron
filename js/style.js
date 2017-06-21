@@ -5,6 +5,7 @@ $(document).ready(function() {
     $('#showREG').slideUp();
     var r = 0;
     var l = 1;
+    var st_id = "";
     
     $('#reg').click(function(){
         if(r%2 != 1){
@@ -42,7 +43,7 @@ $(document).ready(function() {
         var prc = $('#st_price').val();
         if(sty.length > 0 && prc.length > 0){
             e.preventDefault();
-            var form = $('form')[0];
+            var form = $('#up_style')[0];
             var data = new FormData(form);
             var id = sessionStorage.getItem('barberID');
 
@@ -79,6 +80,7 @@ $(document).ready(function() {
         $st_img = $(this).find('img').attr('src'); //ambil src img style
         $st_price = $(this).find('.price').html().replace(/\D/g,'') ; //ambil price style
         $st_id = $(this).find('.hide').html();//ambil id style
+        st_id = $st_id;
         
         $('#pop').empty();
         $('#pop').append('<img src="'+$st_img+'"><span class="toggle"><strong>X</strong></span><br/><h3 id="pop_st_name">'+$st_name+'</h3><span id="pop_st_price">Rp '+$st_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+'</span><br/><br/><div class="row" id="baris"><div class="col" id="hapus">HAPUS</div><div class="col" id="edit">EDIT</div></div>');
@@ -88,7 +90,12 @@ $(document).ready(function() {
         });
         
         $('#edit').click(function(){
-            alert($st_img);
+            $('#edit').removeClass('hide');
+            $('#utama').addClass('hide');
+            
+            $('.teksE').empty();
+            $('.teksE').append('<span>Style Image</span><br/><input type="file" name="u_st_file" id="u_st_file" ><br/><span>Style Name</span><br/><input type="text" placeholder="Style Name" id="u_st_name" value="'+$st_name+'"><br/><span>Style Price</span><br/><input type="number" name="st_price" placeholder="Style Price on Rupiah" id="u_st_price" value="'+$st_price+'"><br/>');
+//            $('.teksE').append('<span>Style Image</span><br/><input type="file" name="u_st_file" id="u_st_file"><br/><span>Style Name</span><br/><input type="text" name="u_st_name" placeholder="Style Name" id="u_st_name"><br/><span>Style Price</span><br/><input type="number" name="u_st_price" placeholder="Style Price on Rupiah" id="u_st_price"><br/>');
         });
         
         $('#hapus').click(function(){
@@ -121,6 +128,43 @@ $(document).ready(function() {
             });
         });
     
+    });
+    
+    $('#batal').click(function(){
+        document.location='style.html';
+    });
+    
+    $('#update').click(function(e){
+        var sty = $('#u_st_name').val();
+        var prc = $('#u_st_price').val();
+        if(sty.length > 0 && prc.length > 0){
+            e.preventDefault();
+            var form = $('#e_up_style')[0];
+            var data = new FormData(form);
+
+            var id = sessionStorage.getItem('barberID');    
+            data.append('id',id);
+            data.append('ids',st_id);
+            data.append('sty',sty);
+            data.append('prc',prc);
+            $.ajax({
+                url: "./php/style-update.php", // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                contentType: false,       // The content type used when sending data to the server.
+                cache: false,             // To unable request pages to be cached
+                processData:false,        // To send DOMDocument or non processed data file it is set to false
+                success: function(data)   // A function to be called if request succeeds
+                {
+                    alert(data);
+                    $('#u_st_name').val();
+                    $('#u_st_price').val();
+                    document.location='style.html';
+                }
+            });
+        }else{
+            alert("Style name and price must be filled !")
+        }
     });
     
 });
