@@ -1,6 +1,5 @@
 $(document).ready(function() {
-    $('#edit').addClass('hide');
-    
+    $('#edit_page').addClass('hide');
     /*INTERFACE SLIDE*/
     $('#showREG').slideUp();
     var r = 0;
@@ -90,7 +89,7 @@ $(document).ready(function() {
         });
         
         $('#edit').click(function(){
-            $('#edit').removeClass('hide');
+            $('#edit_page').removeClass('hide');
             $('#utama').addClass('hide');
             
             $('.teksE').empty();

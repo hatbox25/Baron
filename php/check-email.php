@@ -6,7 +6,7 @@
 		$email = trim($_REQUEST['email']);
 		$email = strip_tags($email);
 		
-		$query = "SELECT userEmail FROM tb_users WHERE userEmail='$email'";
+		$query = "SELECT email FROM tb_users WHERE email='$email'";
 		$result = mysqli_query($db,$query);
 		
         $row = mysqli_num_rows($result);

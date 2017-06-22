@@ -1,10 +1,3 @@
-<!--
-    ORDER
-
-    ONGOING
--->
-<!DOCTYPE html>
-
 <html>
 <head>
 	<title>Baron</title>
@@ -27,93 +20,49 @@
 	</div>
     
     <div id="isi" class="main">
+        <div id="pop"></div>
         <br/>
         <h2>Order New Service</h2>
         <br/>
         
         
-            <div id="s_barber">
-                <div class="b_Hasil">
-                    <span id="b_hasil">Select Barber !</span><br/>
-                </div>
-                <input type="text" id="src_barber" placeholder="Search for barber..">
+        <div id="s_barber">
+            <div class="b_Hasil">
+                <span id="b_hasil">Select Barber !</span><br/>
+            </div>
+            <input type="text" id="src_barber" placeholder="Search for barber..">
 
-                <ul id="ul_barber" class="myUL">
-                    <label  onclick="showHasil('#b_hasil','.pil_barber:checked','Barber Selected : ')">
-                        <li>
-                            <input type="radio" name="fb" value="Agnes" class="pil_barber">
-                            <img src="img/perry.png" width="20%">
-                            <span class="sp_barber">Agnes</span>
-                        </li>
-                    </label>
-                    <label onclick="showHasil('#b_hasil','.pil_barber:checked','Barber Selected : ')">
-                        <li>
-                            <input type="radio" name="fb" value="Billy" class="pil_barber"/>
-                            <img src="img/adam.jpg" width="20%">
-                            <span class="sp_barber">Billy</span>
-                        </li>
-                    </label>
-                    <label onclick="showHasil('#b_hasil','.pil_barber:checked','Barber Selected : ')">
-                        <li>
-                            <input type="radio" name="fb" value="Calvin" class="pil_barber"/>
-                            <img src="img/mike.png" width="20%">
-                            <span class="sp_barber">Calvin</span>                    
-                        </li>
-                    </label>
-                </ul>
-                <br/>
-                <input id="toStyle" type="button" class="button" width="100%" value="NEXT" >                
+            <ul id="ul_barber" class="myUL">
+            </ul>
+            <br/>
+            <input id="toStyle" type="button" class="button" width="100%" value="NEXT" >                
+        </div>
+        <div id="s_style" class="hide">
+            <div class="st_hasil">
+                <span id="st_hasil">Select Style !</span><br/>
             </div>
-            <div id="s_style" class="hide">
-                <div class="st_hasil">
-                    <span id="st_hasil">Select Style !</span><br/>
-                </div>
-                <input type="text" id="src_style" placeholder="Search for style..">
-                <ul id="ul_style" class="myUL">
-                    <label  onclick="showHasil('#st_hasil','.pil_style:checked','Style Selected : ')">
-                        <li>
-                            <input type="radio" name="fb" value="Agnes" class="pil_style">
-                            <img src="img/perry.png" width="20%">
-                            <span class="sp_style">Agnes</span>
-                            <span class="price">Rp 15.000</span>
-                        </li>
-                    </label>
-                    <label onclick="showHasil('#st_hasil','.pil_style:checked','Style Selected : ')">
-                        <li>
-                            <input type="radio" name="fb" value="Billy" class="pil_style"/>
-                            <img src="img/adam.jpg" width="20%">
-                            <span class="sp_style">Billy</span>
-                            <span class="price">Rp 5.000</span>
-                        </li>
-                    </label>
-                    <label onclick="showHasil('#st_hasil','.pil_style:checked','Style Selected : ')">
-                        <li>
-                            <input type="radio" name="fb" value="Calvin" class="pil_style"/>
-                            <img src="img/mike.png" width="20%">
-                            <span class="sp_style">Calvin</span>
-                            <span class="price">Rp 15.000</span>
-                        </li>
-                    </label>
-                </ul>
+            <input type="text" id="src_style" placeholder="Search for style..">
+            <ul id="ul_style" class="myUL">
+            </ul>
+            <br/>
+            <input id="toBarber" type="button" class="button" value="PREV">
+            <input id="toForm" type="button" class="button" width="100%" value="NEXT" >
+        </div>
+        <div id="s_isian" class="hide">
+            <span>Please fill this form below to complete your order !</span>
+            <br/>
+            <label>
                 <br/>
-                <input id="toBarber" type="button" class="button" value="PREV">
-                <input id="toForm" type="button" class="button" width="100%" value="NEXT" >
-            </div>
-            <div id="s_isian" class="hide">
-                <span>Please fill this form below to complete your order !</span>
+                <input type="text" name="address" placeholder="Address" id="address" required>
+            </label>
+            <label>
                 <br/>
-                <label>
-                    <br/>
-                    <input type="text" name="address" placeholder="Address" id="address" required>
-                </label>
-                <label>
-                    <br/>
-                    <input type="number" name="phone" placeholder="Phone number" id="phone" required>
-                </label>
-                <div style="text-align:center;">
-                    <input type="button" class="button" id="sudah" value="Done">
-                </div>
+                <input type="number" name="phone" placeholder="Phone number" id="phone" required>
+            </label>
+            <div style="text-align:center;">
+                <input type="button" class="button" id="sudah" value="Done">
             </div>
+        </div>
         
     </div>
     <div id="summary" class="hide">
@@ -124,46 +73,14 @@
         <div id="sum_order">
             <div class="sum_img">
                 <div class="barber">
-                    <div class="disp">
-                        <h4>Barber</h4>
-                        <img src="img/adam.jpg"><br/>
-                        <span>Adam</span>
-                    </div>
+                    
                 </div>
                 <div class="style">
-                    <div class="disp">
-                        <h4>Style</h4>
-                        <img src="img/adam.jpg"><br/>
-                        <span>Adam</span>
-                    </div>
+                    
                 </div>
             </div>
             <table class="sum_text">
-                <tr>
-                    <td class="ts">Name</td>
-                    <td>:</td>
-                    <td class="td">Hatbox</td>
-                </tr>
-                <tr>
-                    <td class="ts">Address</td>
-                    <td>:</td>
-                    <td class="td">Jatinangor</td>
-                </tr>
-                <tr>
-                    <td class="ts">Phone</td>
-                    <td>:</td>
-                    <td class="td">081081081081</td>
-                </tr>
-                <tr>
-                    <td class="ts">Order date</td>
-                    <td>:</td>
-                    <td class="td">May 31, 2017</td>
-                </tr>
-                <tr>
-                    <td class="ts">Order time</td>
-                    <td>:</td>
-                    <td class="td">07:30</td>
-                </tr>
+                
             </table>
             <center>
                 <br/>

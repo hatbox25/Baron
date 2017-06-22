@@ -59,10 +59,14 @@ function submitForm(){
                $.each(result,function(i,field){
                    if(field.akses === 'user'){
                        sessionStorage.setItem('userId',field.id_user);
+                       sessionStorage.setItem('userName',field.username);
                        window.location = 'home.html';
-                   }else{
+                   }else if(field.akses === 'barber'){
                        sessionStorage.setItem('userId',field.id_user);
                        window.location = 'barber.html';
+                   }else{
+                       sessionStorage.setItem('userId',field.id_user);
+                       window.location = 'admin.html';
                    }
                });
            }
