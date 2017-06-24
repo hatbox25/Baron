@@ -3,21 +3,25 @@ $(document).ready(function(){
     $('#processing').addClass('container');
     $('#tunggu').addClass('hide');
     
-    showBarber();
+    showBarber(); 
     
     var img_barber = "";
     var img_style  = "";
     
     var sel_barber = "";
     var sel_b_id   = "";
+    var sel_b_phone = "";
     
     var sel_style  = "";
     var sel_s_id   = "";
     
     var sel_addres = "";
     var sel_phone  = "";
+    var sel_price  = "";
+    
     var sel_date   = "";
     var sel_time   = "";
+    var time = "";
     
     var now = new Date();
     
@@ -41,8 +45,6 @@ $(document).ready(function(){
                     $s_img = $(this).find('img').attr('src'); //ambil src img style
                     $s_price = $(this).find('.price').html() ; //ambil price style
                     $s_id = $(this).find('.hiden').html();//ambil id style
-
-                    
                     
                     $('#pop').empty();
                     $('#pop').append('<img src="'+$s_img+'"><span class="toggle"><strong>X</strong></span><br/><h3 id="pop_st_name">'+$s_name+'</h3><span id="pop_st_price">'+$s_price+'</span><br/><br/><div class="row" id="baris"><div class="col" id="hapus">CANCEL</div><div class="col" id="edit">SELECT</div></div>');
@@ -63,6 +65,8 @@ $(document).ready(function(){
                         sel_s_id    = $s_id;
                         img_style   = $s_img;
                         sel_style   = $s_name;
+                        sel_price   = $s_price
+                        
                         showHasil('#st_hasil','.pil_style:checked','Style Selected : ');
                     });
 
@@ -104,6 +108,8 @@ $(document).ready(function(){
             sel_date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
             sel_time = today.getHours() + ":" + today.getMinutes();
             
+            time = sel_date + " " + sel_time;
+            
             $("#isi").addClass("hide");
             $("#summary").removeClass("hide");
             
@@ -121,12 +127,61 @@ $(document).ready(function(){
         $("#pesan").addClass("hide");
         $("#processing").removeClass("hide");
         
-        $('#timer').append(05 + ":" + 00);
+        //ADD ORDER + SET AVB BARBER 0
+        $.ajax({
+            type:'POST',
+            url:'./php/order-process.php',
+            data:{
+                "pro":1,
+                "idu":sessionStorage.getItem('userId'),
+                "idb":sel_b_id,
+                "ids":sel_s_id,
+                "addr":sel_addres,
+                "phone":sel_phone,
+                "price":sel_price,
+                "time":time
+            },
+            async:false,
+            success:function(a){
+                if(a == 0){
+                    
+                }
+                else{
+                    if(a == 'Barber is currently unavailable'){
+                        alert(a);
+                    }else{
+                        alert("Your order is being process");
+                        sessionStorage.setItem('orderID',a);
+                    }
+                }
+            }
+        });
+        
+        setInterval(function(){
+            var x = cekOrder();
+            console.log(x);
+        },1000);
+        
+        $('#timer').append(00 + ":" + 10);
         startTimer();
     });
     
     $('#batal').click(function(){
-        alert("bisa");
+        if(confirm("Are you sure want to cancel this order")){
+            $.ajax({
+                type:'POST',
+                url:'./php/user-batal.php',
+                data:{
+                    "acpt":1,
+                    "id":sessionStorage.getItem('orderID'),
+                    "idb":sel_b_id
+                },
+                async:false,
+                success:function(a){
+                    document.location='order.html';
+                }
+            });
+        }
     });
     
     /*SELECTING BARBER & POPUP*/
@@ -137,8 +192,7 @@ $(document).ready(function(){
             $b_img = $(this).find('img').attr('src');
             $b_name = $(this).find('.sp_barber').html();
             $b_about = $(this).find('p').html();
-            
-            
+            $b_phone = $(this).find('a').html();
             
             $('#pop').empty();
             $('#pop').append('<img src="'+$b_img+'"><span class="toggle"><strong>X</strong></span><br/><h3 id="pop_st_name">'+$b_name+'</h3><span id="pop_st_price">'+$b_about+'</span><br/><br/><div class="row" id="baris"><div class="col" id="hapus">CANCEL</div><div class="col" id="edit">SELECT</div></div>');
@@ -159,6 +213,7 @@ $(document).ready(function(){
                 sel_barber  = $b_name;
                 img_barber  = $b_img;
                 sel_b_id    = $b_id;
+                sel_b_phone = $b_phone;
                 
                 showHasil('#b_hasil','.pil_barber:checked','Barber Selected : ');
             });
@@ -251,7 +306,7 @@ function showBarber(){
                 var result = $.parseJSON(a);
                 $('#ul_barber').empty();
                 $.each(result,function(i,field){
-                    $('#ul_barber').append('<label class="pilihan"><li><input type="radio" name="fb" value="'+field.username+'" class="pil_barber"><img src="upload/'+field.barber_img+'" width="20%"><span class="sp_barber">'+field.username+'</span><span class="hiden">'+field.id_barber+'</span><p class="hiden">'+field.barber_about+'</p></li></label>');
+                    $('#ul_barber').append('<label class="pilihan"><li><input type="radio" name="fb" value="'+field.username+'" class="pil_barber"><img src="upload/'+field.barber_img+'" width="20%"><span class="sp_barber">'+field.username+'</span><span class="hiden">'+field.id_barber+'</span><p class="hiden">'+field.barber_about+'</p><a class="hide">'+field.barber_phone+'</a></li></label>');
                 });
             }
         }
@@ -283,4 +338,22 @@ function showStyle(id_barber){
             }
         }
     });
+}
+
+function cekOrder(){
+    var stat;
+    var id = sessionStorage.getItem('orderID');
+    $.ajax({
+        type:'POST',
+        url:'./php/user-cekorder.php',
+        data:{
+            "cek":1,
+            "id":id
+        },
+        async:false,
+        success:function(a){
+            stat = a;
+        }
+    });
+    return stat;
 }

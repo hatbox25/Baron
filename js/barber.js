@@ -12,6 +12,36 @@ $(document).ready(function (e) {
     
     getProfile('#utama') ;
     
+    var count = 0;
+    //CEK ORDER
+    var myInt = setInterval(function(){
+        var c_ord = cekOrder();
+        if(c_ord == 1){
+            var st = getOrder();
+            
+            if(st == 'proses'){
+                if(count == 0){
+                    count++;
+                    var audio = new Audio('notif.mp3');
+                    audio.play();
+                }
+                $('#utama').addClass('hide');
+                $('#adapesan').removeClass('hide');
+            }else if(st == 'terima' || st == 'cukur'){
+                $('#utama').addClass('hide');
+                $('#adapesan').addClass('hide');
+                $('#cukur').removeClass('hide');
+                if(st == 'cukur'){
+                    $('#end').prop('disabled',false);
+                    $('#end').removeClass('hide');
+                    $('#begin').addClass('hide');
+                }    
+            }else if(st == 'batal'){
+                 
+            }
+        }
+    },1000);
+    
     var to = cekAvb();
     
     var x=0;
@@ -104,13 +134,111 @@ $(document).ready(function (e) {
         }
     });
     
-    //START CUKUR
-    $('#begin').click(function(){
-        $('#end').prop('disabled',false);
-        $('#end').removeClass('hide');
-        $(this).addClass('hide');
+    $('#acpt').click(function(){
+        var id = sessionStorage.getItem('orderID');
+        $.ajax({
+            type:'POST',
+            url:'./php/barber-acpt.php',
+            data:{
+                "acpt":1,
+                "id":id
+            },
+            async:false,
+            success:function(a){
+                if(a == 0){
+                  //  alert("error");
+                }
+                else{
+                    alert("Order Accepted !");
+                    $('#adapesan').addClass('hide');
+                    $('#cukur').removeClass('hide');
+                }
+            }
+        });
         
-        /*UPDATE TIME START*/
+      
+        /*TRIGER START INTERVAL*/
+//        inter = setInterval(function(){
+//            console.log('jalan');
+//            var st = getOrder();
+//            if(st == 'batal'){
+//                clearInterval(inter);
+//                
+//            }
+//        },1000);
+        
+    });
+    
+    $('#decl').click(function(){
+        clearInterval(myInt);
+        if(confirm("Are you sure want to decline this order ?")){
+            $.ajax({
+                type:'POST',
+                url:'./php/barber-decl.php',
+                data:{
+                    "acpt":1,
+                    "id":sessionStorage.getItem('orderID'),
+                    "idb":sessionStorage.getItem('barberID')
+                },
+                async:false,
+                success:function(a){
+                    if(a == 0){
+                      //  alert("error");
+                    }
+                    else{
+                        document.location='barber.html';
+                    }
+                }
+            });
+        }
+    });
+    
+      //START CUKUR
+    $('#begin').click(function(){
+        var id = sessionStorage.getItem('orderID');
+        $.ajax({
+            type:'POST',
+            url:'./php/barber-start.php',
+            data:{
+                "acpt":1,
+                "id":id
+            },
+            async:false,
+            success:function(a){
+                if(a == 0){
+                  //  alert("error");
+                }
+                else{
+                    $('#end').prop('disabled',false);
+                    $('#end').removeClass('hide');
+                    $('#begin').addClass('hide');
+                }
+            }
+        });
+    });
+    
+    //SELESAI CUKUR
+    $('#end').click(function(){
+        var id = sessionStorage.getItem('orderID');
+        $.ajax({
+            type:'POST',
+            url:'./php/barber-finish.php',
+            data:{
+                "acpt":1,
+                "id":id,
+                "idb":sessionStorage.getItem('barberID')
+            },
+            async:false,
+            success:function(a){
+                if(a == 0){
+                  //  alert("error");
+                }
+                else{
+                    alert('Finished');
+                    document.location='barber.html';
+                }
+            }
+        });
     });
     
     $('#btn_style').click(function(){
@@ -210,4 +338,51 @@ function cekAvb(){
         }
     });
     return j;
+}
+
+function cekOrder(){
+    var stat;
+    var id = sessionStorage.getItem('barberID');
+    $.ajax({
+        type:'POST',
+        url:'./php/barber-cekorder.php',
+        data:{
+            "cek":1,
+            "id":id
+        },
+        async:false,
+        success:function(a){
+            stat = a;
+        }
+    });
+    return stat;
+}
+
+function getOrder(){
+    var id = sessionStorage.getItem('barberID');
+    var stat = "";
+    $.ajax({
+        type:'POST',
+        url:'./php/barber-getorder.php',
+        data:{
+            "cek":1,
+            "id":id
+        },
+        async:false,
+        success:function(a){
+            if(a == 0){
+              //  alert("error");
+            }
+            else{
+                var result = $.parseJSON(a);
+                $.each(result,function(i,field){
+                    $('.detil').empty();
+                    $('.detil').html('<tr><td class="q">Name : </td><td colspan="3">'+field.username+'</td></tr><tr><td class="q">Address : </td><td colspan="3">'+field.ord_address+'</td></tr><tr><td class="q">Phone : </td><td colspan="3">'+field.ord_phone+'</td></tr><tr><td class="q">Style : </td><td colspan="3">'+field.sty_name+'</td></tr>');
+                    sessionStorage.setItem('orderID',field.id_order);
+                    stat = field.ord_status;
+                });
+            }
+        }
+    });
+    return stat;
 }
