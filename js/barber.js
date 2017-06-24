@@ -6,6 +6,7 @@ $(document).ready(function (e) {
     
     $('#adapesan').addClass('hide');
     $('#edit').addClass('hide');
+    $('#tolak').addClass('hide');
     $('#cukur').addClass('hide');
     $('#chg').addClass('hide');
     $('#end').addClass('hide');
@@ -37,7 +38,14 @@ $(document).ready(function (e) {
                     $('#begin').addClass('hide');
                 }    
             }else if(st == 'batal'){
-                 
+                $('#utama').addClass('hide');
+                $('#adapesan').addClass('hide');
+                $('#tolak').removeClass('hide');
+                if(count < 2){
+                    count++;
+                    var audio = new Audio('fail.mp3');
+                    audio.play();
+                }
             }
         }
     },1000);
@@ -191,6 +199,27 @@ $(document).ready(function (e) {
                 }
             });
         }
+    });
+    
+    $('#ok').click(function(){
+        $.ajax({
+            type:'POST',
+            url:'./php/barber-ok.php',
+            data:{
+                "acpt":1,
+                "id":sessionStorage.getItem('orderID'),
+                "idb":sessionStorage.getItem('barberID')
+            },
+            async:false,
+            success:function(a){
+                if(a == 0){
+                  //  alert("error");
+                }
+                else{
+                    document.location='barber.html';
+                }
+            }
+        });
     });
     
       //START CUKUR

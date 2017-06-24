@@ -2,8 +2,10 @@ $(document).ready(function(){
     $('#summary').addClass('main');
     $('#processing').addClass('container');
     $('#tunggu').addClass('hide');
-    
-    showBarber(); 
+    $('#cukur').addClass('hide');
+    $('#sedang_cukur').addClass('hide');
+    $('#tolak').addClass('hide');
+    $('#rating').addClass('hide');
     
     var img_barber = "";
     var img_style  = "";
@@ -24,6 +26,75 @@ $(document).ready(function(){
     var time = "";
     
     var now = new Date();
+    
+    
+    var stIn = setInterval(function(){
+        var xx = getOrder();
+        if(xx == 'nothing' || xx == 'batal'){
+            clearInterval(stIn);
+        }else{
+            $("#pesan").addClass("hide");
+            $("#processing").removeClass("hide");
+            if(xx == 'proses'){
+                $('#tunggu').removeClass('hide');
+            }else if(xx == 'terima'){
+                $('#cukur').removeClass('hide');
+                $('#tunggu').addClass('hide');
+                $('#timer').html(00 + ":" + 10);
+                startTimer();
+                
+                $.ajax({
+                    type:'POST',
+                    url:'./php/order-getbarber.php',
+                    data:{
+                        "cek":1,
+                        "id":sessionStorage.getItem('barberID')
+                    },
+                    async:false,
+                    success:function(a){
+                        if(a == 0){
+                        }else{
+                            var result = $.parseJSON(a);
+                            $('#b_coming').empty();
+                            $.each(result,function(i,field){
+                                $('#b_coming').html('<img src="upload/'+field.barber_img+'" width="50%" style="border:5px solid rgba(0,0,0,0.4); border-radius:5px;"><br/><br/><span><strong>'+field.username+'</strong></span><br/><br/><span>'+field.barber_phone+'</span>');
+                            });
+                        }              
+                    }
+                });
+            }else if(xx == 'ditolak'){
+                $('#tolak').removeClass('hide');
+            }else if(xx == 'cukur'){
+                $('#cukur').addClass('hide');
+                $('#sedang_cukur').removeClass('hide');
+                
+                $.ajax({
+                    type:'POST',
+                    url:'./php/order-getbarber.php',
+                    data:{
+                        "cek":1,
+                        "id":sessionStorage.getItem('barberID')
+                    },
+                    async:false,
+                    success:function(a){
+                        if(a == 0){
+                        }else{
+                            var result = $.parseJSON(a);
+                            $('#b_pros').empty();
+                            $.each(result,function(i,field){
+                                $('#b_pros').html('<img src="upload/'+field.barber_img+'" width="50%" style="border:5px solid rgba(0,0,0,0.4); border-radius:5px;"><br/><br/><span><strong>'+field.username+'</strong></span><br/><br/><span>'+field.barber_phone+'</span>');
+                            });
+                        }              
+                    }
+                });
+            }
+            
+        }
+        console.log(xx);
+    },1000);
+    
+    
+    showBarber(); 
     
     $("#src_barber").keyup(function(){
         showList('src_barber','ul_barber','sp_barber',null);
@@ -126,7 +197,6 @@ $(document).ready(function(){
     $("#proses").click(function(){
         $("#pesan").addClass("hide");
         $("#processing").removeClass("hide");
-        
         //ADD ORDER + SET AVB BARBER 0
         $.ajax({
             type:'POST',
@@ -152,14 +222,49 @@ $(document).ready(function(){
                     }else{
                         alert("Your order is being process");
                         sessionStorage.setItem('orderID',a);
+                        $('#tunggu').removeClass('hide');
                     }
                 }
             }
         });
         
-        setInterval(function(){
+        var count =  0;
+        
+        var interval = setInterval(function(){
             var x = cekOrder();
             console.log(x);
+            
+            if(x == 'ditolak'){
+                clearInterval(interval);
+                $('#tunggu').addClass('hide');
+                $('#tolak').removeClass('hide');
+                
+                if(count < 2){
+                    count++;
+                    var audio = new Audio('fail.mp3');
+                    audio.play();
+                }
+                
+                setTimeout(function(){
+                    document.location='order.html';
+                },10000)
+            }else if(x == 'terima'){
+                $('#tunggu').addClass('hide');
+                $('#cukur').removeClass('hide');
+                $('#timer').html(00 + ":" + 10);
+                startTimer();
+                
+                $('#b_coming').empty();
+                $('#b_coming').html('<img src="'+img_barber+'" width="50%" style="border:5px solid rgba(0,0,0,0.4); border-radius:5px;"><br/><br/><span><strong>'+sel_barber+'</strong></span><br/><br/><span>'+sel_b_phone+'</span>');
+            }else if(x == 'cukur'){
+                $('#cukur').addClass('hide');
+                $('#sedang_cukur').removeClass('hide');
+                
+                $('#b_pros').empty();
+                $('#b_pros').html('<img src="'+img_barber+'" width="50%" style="border:5px solid rgba(0,0,0,0.4); border-radius:5px;"><br/><br/><span><strong>'+sel_barber+'</strong></span><br/><br/><span>'+sel_b_phone+'</span>');
+            }else{
+                document.location='order.html';
+            }
         },1000);
         
         $('#timer').append(00 + ":" + 10);
@@ -173,8 +278,7 @@ $(document).ready(function(){
                 url:'./php/user-batal.php',
                 data:{
                     "acpt":1,
-                    "id":sessionStorage.getItem('orderID'),
-                    "idb":sel_b_id
+                    "id":sessionStorage.getItem('orderID')
                 },
                 async:false,
                 success:function(a){
@@ -300,7 +404,8 @@ function showBarber(){
         success:function(a){
             if(a == 0){
                 $('#ul_barber').empty();
-                $('#ul_barber').append('<span>There\'s no barber available </span>')
+                $('#ul_barber').append('<span>There\'s no barber available </span>');
+                alert('Click order navigation page to refresh barber list');
             }
             else{
                 var result = $.parseJSON(a);
@@ -356,4 +461,32 @@ function cekOrder(){
         }
     });
     return stat;
+}
+
+function getOrder(){
+    var xxx = "";
+    $.ajax({
+        type:'POST',
+        url:'./php/user-getorder.php',
+        data:{
+            "cek":1,
+            "idu":sessionStorage.getItem('userId')
+        },
+        async:false,
+        success:function(a){
+            if(a == 0){
+                xxx = "nothing";
+              //  alert("error");
+            }
+            else{
+                var result = $.parseJSON(a);
+                $.each(result,function(i,field){
+                    sessionStorage.setItem('orderID',field.id_order);
+                    sessionStorage.setItem('barberID',field.id_barber);
+                    xxx = field.ord_status;
+                });
+            }
+        }
+    });
+    return xxx;
 }

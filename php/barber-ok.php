@@ -5,10 +5,13 @@
 		$id = $_POST['id'];
         $idb = $_POST['idb'];
 				
-		$sql = "UPDATE tb_order SET ord_status='batal' WHERE id_order='$id'";
+		$sql = "DELETE FROM tb_order WHERE id_order='$id'";
 		$result = mysqli_query($db,$sql);
         
-		if($result)
+        $sql1 = "UPDATE tb_barber SET barber_stat=1 WHERE id_barber='$idb'";
+		$result1 = mysqli_query($db,$sql1);
+        
+		if($result && $result1)
         {
             echo 1;
         }
