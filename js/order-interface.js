@@ -32,6 +32,7 @@ $(document).ready(function(){
         var xx = getOrder();
         if(xx == 'nothing' || xx == 'batal'){
             clearInterval(stIn);
+            
         }else{
             $("#pesan").addClass("hide");
             $("#processing").removeClass("hide");
@@ -87,14 +88,48 @@ $(document).ready(function(){
                         }              
                     }
                 });
+            }else if(xx == 'selesai'){
+                $("#pesan").addClass("hide");
+                $('#rating').removeClass('hide');
+                clearInterval(stIn);
+                
+                var audio = new Audio('notif.mp3');
+                audio.play();
+                
+                var score = 0;
+                //AMBIL SCORE RATING
+                $('#rating_ord .stars').click(function(){
+                    score = $(this).val();
+                });
+                
+                //UPDATE RATING
+                $('#btn_rate').click(function(){
+                    $.ajax({
+                        type:'POST',
+                        url:'./php/order-setrating.php',
+                        data:{
+                            "set":1,
+                            "id":sessionStorage.getItem('orderID'),
+                            "rate":score    
+                        },
+                        async:false,
+                        success:function(a){
+                            if(a == 0){
+
+                            }else{
+                                alert("Thank you for using Baron service");
+                                document.location='order.html';
+                            }
+                        }
+                    });
+                });
             }
-            
         }
         console.log(xx);
     },1000);
     
+    showBarber();
     
-    showBarber(); 
     
     $("#src_barber").keyup(function(){
         showList('src_barber','ul_barber','sp_barber',null);
@@ -262,12 +297,14 @@ $(document).ready(function(){
                 
                 $('#b_pros').empty();
                 $('#b_pros').html('<img src="'+img_barber+'" width="50%" style="border:5px solid rgba(0,0,0,0.4); border-radius:5px;"><br/><br/><span><strong>'+sel_barber+'</strong></span><br/><br/><span>'+sel_b_phone+'</span>');
-            }else{
+            }else if(x == 'proses'){
+                $('#tunggu').removeClass('hide');
+            }else if(x == 'selesai'){            
                 document.location='order.html';
             }
         },1000);
         
-        $('#timer').append(00 + ":" + 10);
+        $('#timer').append(05 + ":" + 00);
         startTimer();
     });
     

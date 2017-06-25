@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/styleORD.css">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 	<script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/order-interface.js"></script>
@@ -174,7 +175,30 @@
             </center>
         </div>
     
-        <div id="rating"></div>
+        <div id="rating">
+            <br/>
+            <h2>YOUR ORDER IS FINISHED</h2>
+            <br/>
+            <center>
+                <span>Please rate this service ...</span>
+                <br/><br/>
+                <fieldset id="rating_ord" class="rating">
+                    <input class="stars" type="radio" id="star5" name="rating" value="5"/>
+                    <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                    <input class="stars" type="radio" id="star4" name="rating" value="4"/>
+                    <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input class="stars" type="radio" id="star3" name="rating" value="3"/>
+                    <label class="full" for="star3" title="Meh - 3 stars"></label>
+                    <input class="stars" type="radio" id="star2" name="rating" value="2"/>
+                    <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                    <input class="stars" type="radio" id="star1" name="rating" value="1"/>
+                    <label class="full" for="star1" title="Really bad - 1 stars"></label>
+                </fieldset>
+                <br/>
+                <br/>
+                <input type="button" class="button" id="btn_rate" value="SUBMIT">
+            </center>
+        </div>
     
     </div>
     <div class="footer">

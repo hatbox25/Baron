@@ -4,7 +4,7 @@
 	if (isset($_POST['cek'])){
 		$idu = $_POST['idu'];
 				
-		$sql = "SELECT * FROM tb_order WHERE id_user='$idu' AND new='0'";
+		$sql = "SELECT * FROM tb_order WHERE id_user='$idu' AND new='0' OR (rating='0' AND ord_status='selesai') ";
 		
 		$result = mysqli_query($db,$sql);
 		$num_row = mysqli_num_rows($result);
