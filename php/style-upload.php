@@ -1,5 +1,6 @@
 <?php
     require_once 'config.php';
+    require_once 'image_crop.php';
 
     if(isset($_FILES["st_file"]["type"]))
     {
@@ -10,10 +11,7 @@
         $validextensions = array("jpeg", "jpg","png");
         $temporary = explode(".", $_FILES["st_file"]["name"]);
         $file_extension = end($temporary);
-        
-        $data = getimagesize($_FILES["st_file"]["tmp_name"]);
-        $w = $data[0];
-        $h = $data[1];
+     
         
         //CREATE DIR
         $path = '../upload/style/'.$id;
@@ -28,9 +26,6 @@
             {
                 echo "Return Code: " . $_FILES["st_file"]["error"];
             }
-            else if($w != $h){
-                echo "Image must square";
-            }
             else
             {
                 if (file_exists($path."/".$_FILES["st_file"]["name"])) {
@@ -41,6 +36,8 @@
                     $temp = explode(".", $_FILES["st_file"]["name"]);
                     $newfilename = $name . '.' . end($temp);
                     move_uploaded_file($_FILES["st_file"]["tmp_name"], $path."/". $newfilename);
+                    
+                    resize_crop_image(500, 500, $path."/". $newfilename, $path."/". $newfilename);
 
                     $sql = "INSERT INTO tb_style(id_barber,sty_name,sty_price,sty_img) VALUES('$id','$name','$price','$newfilename')";
                     $result = mysqli_query($db,$sql);

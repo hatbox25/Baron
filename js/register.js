@@ -82,6 +82,7 @@ function submitFor(){
         url:'./php/register.php',
         data:$('#register-form').serialize(),
         async:false,
+        cache:false,
         success:function(a){
             $('#btn-signup').html('&nbsp; signing up...').prop('disabled', true);
             $('input[type=text],input[type=email],input[type=password]').prop('disabled', true);

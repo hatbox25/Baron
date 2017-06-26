@@ -1,48 +1,158 @@
 <!--
     USER : 
-            ONGOING
             HISTORY
     BARBER :
-            ONGOING
             HISTORY
--->
-<!--
-    ORDER
-
-    ONGOING
+    ADMIN :
+            ALL
 -->
 <!DOCTYPE html>
 
-<html>
+<html id="land">
 <head>
 	<title>Baron</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/styleORD.css">
+	<link rel="stylesheet" href="css/style2.css">
     <link rel="stylesheet" href="css/style.css">
 	<script src="js/jquery-3.1.1.min.js"></script>
-    
+    <script src="js/trans.js"></script>
     
 </head>
 	
 <body>
-<form  method="post">
-<div id="pesan" class="container">
+<div class="container">
 	<div class="header">
 		<div class="Logo" align="center">
 			<img src="img/BARON.png">
 		</div>
 	</div>
     
-    <div class="main">
-        
+    <div id="user">
+        <div class="main">
+            <br/>
+            <h2>My Order History</h2>
+            <br/>
+            <table class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Barber</th>
+                                <th>Style</th>
+                                <th>Status</th>
+                                <th>Score</th>
+                                <th>Total Transaction</th>    
+                            </tr>
+                        </thead>
+                        <tbody align="center" id="full">
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+        </div>
+
+        <div class="footer">
+            <div class="icon"><a href="home.html"><img src="img/home.png"/></a></div> 
+            <div class="icon"><a href="order.html"><img src="img/order.png"/></a></div> 
+            <div class="icon"><a href="transaction.html"><img src="img/trans-sel.png"/></a></div> 
+            <div class="icon"><a href="about.html"><img src="img/about.png"/></a></div> 
+        </div>
     </div>
-    <div class="footer">
-        <div class="icon"><a href="home.html"><img src="img/home.png"/></a></div> 
-        <div class="icon"><a href="order.html"><img src="img/order.png"/></a></div> 
-        <div class="icon"><a href="transaction.html"><img src="img/trans-sel.png"/></a></div> 
-        <div class="icon"><a href="about.html"><img src="img/about.png"/></a></div> 
+
+    <div id="barber">
+        <div class="main">
+            <br/>
+            <h2>My Services History</h2>
+            <br/>
+            <table class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>User</th>
+                                <th>Style</th>
+                                <th>Status</th>
+                                <th>Score</th>
+                                <th>Total Transaction</th>    
+                            </tr>
+                        </thead>
+                        <tbody align="center" id="full">
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+        </div>
+
+        <div class="footer">
+            <div class="icon"><a href="home.html"><img src="img/home.png"/></a></div> 
+            <div class="icon"><a href="barber.html"><img src="img/profile.png"/></a></div> 
+            <div class="icon"><a href="transaction.html"><img src="img/trans-sel.png"/></a></div> 
+            <div class="icon"><a href="about.html"><img src="img/about.png"/></a></div> 
+        </div>
     </div>
+
+    <div id="admin">
+        <div class="main">
+            <br/>
+            <h2>Transactions</h2>
+            <br/>
+            <table class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Barber</th>
+                                <th>User</th>
+                                <th>Status</th>
+                                <th>Score</th>
+                                <th>Total Transaction</th>    
+                            </tr>
+                        </thead>
+                        <tbody align="center" id="full">
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+        </div>
+
+        <div class="footer">
+            <div class="icon"><a href="home.html"><img src="img/home.png"/></a></div> 
+            <div class="icon"><a href="admin.html"><img src="img/add.png"/></a></div> 
+            <div class="icon"><a href="transaction.html"><img src="img/trans-sel.png"/></a></div> 
+            <div class="icon"><a href="about.html"><img src="img/about.png"/></a></div> 
+        </div>
+    </div>
+    
 </div>
 </body>   
 </html>
+
+

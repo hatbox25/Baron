@@ -68,6 +68,7 @@ $(document).ready(function (e) {
                     "to":to
                 },
                 async:false,
+                cache:false,
                 success:function(a){
                     if(a == 0){
                         alert("error");
@@ -152,6 +153,7 @@ $(document).ready(function (e) {
                 "id":id
             },
             async:false,
+            cache:false,
             success:function(a){
                 if(a == 0){
                   //  alert("error");
@@ -189,6 +191,7 @@ $(document).ready(function (e) {
                     "idb":sessionStorage.getItem('barberID')
                 },
                 async:false,
+                cache:false,
                 success:function(a){
                     if(a == 0){
                       //  alert("error");
@@ -211,6 +214,7 @@ $(document).ready(function (e) {
                 "idb":sessionStorage.getItem('barberID')
             },
             async:false,
+            cache:false,
             success:function(a){
                 if(a == 0){
                   //  alert("error");
@@ -233,6 +237,7 @@ $(document).ready(function (e) {
                 "id":id
             },
             async:false,
+            cache:false,
             success:function(a){
                 if(a == 0){
                   //  alert("error");
@@ -248,6 +253,9 @@ $(document).ready(function (e) {
     
     //SELESAI CUKUR
     $('#end').click(function(){
+            
+        var today = new Date();
+        var time = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours() + ':' + today.getMinutes();    
         var id = sessionStorage.getItem('orderID');
         $.ajax({
             type:'POST',
@@ -255,9 +263,11 @@ $(document).ready(function (e) {
             data:{
                 "acpt":1,
                 "id":id,
-                "idb":sessionStorage.getItem('barberID')
+                "idb":sessionStorage.getItem('barberID'),
+                "time":time
             },
             async:false,
+            cache:false,
             success:function(a){
                 if(a == 0){
                   //  alert("error");
@@ -294,6 +304,7 @@ function updateProfile(x,y,z){
             "about":z
         },
         async:false,
+        cache:false,
         success:function(a){
             if(a == 0){
              //   alert("error");
@@ -349,6 +360,7 @@ function cekAvb(){
             "id":id
         },
         async:false,
+        cache:false,
         success:function(a){
             if(a == 0){
                 alert("error");
@@ -380,6 +392,7 @@ function cekOrder(){
             "id":id
         },
         async:false,
+        cache:false,
         success:function(a){
             stat = a;
         }
@@ -398,6 +411,7 @@ function getOrder(){
             "id":id
         },
         async:false,
+        cache:false,
         success:function(a){
             if(a == 0){
               //  alert("error");

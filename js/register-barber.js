@@ -14,6 +14,7 @@ $('document').ready(function(){
                 "key":key
             },
             async:false,
+            cache:false,
             success:function(a){
                 if(a == 0){
                     alert("Can't find the acount");
@@ -46,6 +47,7 @@ $('document').ready(function(){
                 "id":id
             },
             async:false,
+            cache:false,
             success:function(a){
                 var result = $.parseJSON(a);
                 if(result.status === 'success'){

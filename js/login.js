@@ -50,6 +50,7 @@ function submitForm(){
        url:'./php/login.php',
        data:$('#login-form').serialize(),
        async:false,
+       cache:false,
        success:function(a){
            if(a == 0){
                $("#login-form").trigger('reset');
@@ -59,14 +60,19 @@ function submitForm(){
                $.each(result,function(i,field){
                    if(field.akses === 'user'){
                        sessionStorage.setItem('userId',field.id_user);
+                       sessionStorage.setItem('role',field.akses);
                        sessionStorage.setItem('userName',field.username);
-                       window.location = 'home.html';
+                       document.location = 'home.html';
                    }else if(field.akses === 'barber'){
                        sessionStorage.setItem('userId',field.id_user);
-                       window.location = 'barber.html';
+                       sessionStorage.setItem('role',field.akses);
+                       sessionStorage.setItem('userName',field.username);
+                       document.location = 'home.html';
                    }else{
                        sessionStorage.setItem('userId',field.id_user);
-                       window.location = 'admin.html';
+                       sessionStorage.setItem('role',field.akses);
+                       sessionStorage.setItem('userName',field.username);
+                       document.location = 'home.html';
                    }
                });
            }
