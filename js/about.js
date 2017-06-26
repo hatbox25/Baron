@@ -12,7 +12,7 @@ $(document).ready(function(){
         return this.optional( element ) || eregex.test( value );
     });
 
-    $("#register-form").validate({
+    $("#feedback-form").validate({
         rules:{
             name: {
                 required: true,
@@ -22,24 +22,14 @@ $(document).ready(function(){
             email : {
                 required : true,
                 validemail: true,
-                remote: {
-                    url: "./php/check-email.php",
-                    type: 'POST',
-                    data: {
-                        email: function() {
-                            return $( "#email" ).val();
-                            }
-                    }
-                }
             },
-            password: {
+            contact: {
+                required: true
+            },
+            message: {
                 required: true,
                 minlength: 6,
-                maxlength: 15
-            },
-            cpassword: {
-                required: true,
-                equalTo: '#password'
+                maxlength: 250
             }
         },
         messages:{
@@ -51,15 +41,13 @@ $(document).ready(function(){
             email : {
                 required : "Email is required",
                 validemail : "Please enter valid email address",
-                remote : "Email already exists"
             },
-            password:{
-                required: "Password is required",
-                minlength: "Password at least have 6 characters"
+            contact:{
+                required: "Contact is required"
             },
-            cpassword:{
-                required: "Retype your password",
-                equalTo: "Password did not match !"
+            message:{
+                required: "Message is required",
+                minlength: "Message at least have 6 characters"
             }
         },
         errorPlacement : function(error, element) {
@@ -72,43 +60,38 @@ $(document).ready(function(){
             $(element).closest('.form-group').removeClass('has-error');
             $(element).closest('.form-group').find('.help-block').html('');
         },
-        submitHandler: submitFor
+        submitHandler: submitForm
     });
 });
 
-function submitFor(){
+function submitForm(){
     $.ajax({
         type:'POST',
-        url:'./php/register.php',
-        data:$('#register-form').serialize(),
+        url:'./php/email.php',
+        data:$('#feedback-form').serialize(),
         async:false,
         success:function(a){
-            $('#btn-signup').html('&nbsp; signing up...').prop('disabled', true);
-            $('input[type=text],input[type=email],input[type=password]').prop('disabled', true);
+            $('#btn-email').html('&nbsp; Sending...').prop('disabled', true);
+            $('input[type=text],input[type=email]').prop('disabled', true);
             if(a == 0){
-                $("#register-form").trigger('reset');
+                $("#feedback-form").trigger('reset');
                 alert('An unknown error occoured, Please try again Later...');
             }else{
                var result = $.parseJSON(a);
                if(result.status === 'success'){
                    $('#errorDiv').slideDown('fast', function(){
                        $('#errorDiv').append('<div class="alert alert-info">'+result.message+'</div>');
-                       $("#register-form").trigger('reset');
-                       $('input[type=text],input[type=email],input[type=password]').prop('disabled', false);
-                       $('#btn-signup').html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Sign Me Up').prop('disabled', false);
-                   }).delay(2000).slideUp('fast');
-
-                   $('#errorDiv').slideUp(2000, function() {
-                       // pindah ke login
-                       window.location.replace('login.html');
-                   });
+                       $("#feedback-form").trigger('reset');
+                       $('input[type=text],input[type=email]').prop('disabled', false);
+                       $('#btn-email').html('&nbsp; Send').prop('disabled', false);
+                   }).delay(4000).slideUp('fast');
                 }else{
                    $('#errorDiv').slideDown('fast', function(){
                        $('#errorDiv').append('<div class="alert alert-danger">'+result.message+'</div>');
-                       $("#register-form").trigger('reset');
-                       $('input[type=text],input[type=email],input[type=password]').prop('disabled', false);
-                       $('#btn-signup').html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Sign Me Up').prop('disabled', false);
-                   }).delay(2000).slideUp('fast');
+                       $("#feedback-form").trigger('reset');
+                       $('input[type=text],input[type=email]').prop('disabled', false);
+                       $('#btn-email').html('&nbsp; Send').prop('disabled', false);
+                   }).delay(4000).slideUp('fast');
                 }
             }
         }

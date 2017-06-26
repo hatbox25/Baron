@@ -1,3 +1,97 @@
 <!--
     ABOUT BARON
 -->
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Baron</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/style.css">
+
+	<script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/about.js"></script>
+
+    <style>
+    	.imglogo {
+    	    width : 100px;
+            height: auto;
+    	}
+
+	</style>
+</head>
+
+<body>
+<div class="container">
+	<div class="header">
+		<div class="Logo" align="center">
+			<img src="img/BARON.png">
+		</div>
+	</div>
+
+	<div class="main">
+            <img src="img/logo.jpg" class="imglogo"/>
+            <p>
+                Version 1.0  &copy;2017 Baron <br>All Rights Reserved
+            </p>
+        <!-- feedback send email -->
+        <hr><br>
+        <form method="post" id="feedback-form" autocomplete="off">
+        <div class="content">
+            <div class="form-body">
+                <!-- json response will be here -->
+                <div id="errorDiv"></div>
+
+                <label id="label-contact">Contact Us</label>
+                <!-- Name -->
+                <div class="form-group">
+                     <div class="input-group">
+                     <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                     <input name="name" type="text" id="name" class="form-control" placeholder="Name" maxlength="40">
+                     </div>
+                     <span class="help-block" id="error"></span>
+                </div>
+                <!-- Email -->
+                <div class="form-group">
+                     <div class="input-group">
+                     <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                     <input name="email" id="email" type="text" class="form-control" placeholder="Email" maxlength="50">
+                     </div>
+                     <span class="help-block" id="error"></span>
+                </div>
+                <!-- Contact Number -->
+                <div class="form-group">
+                     <div class="input-group">
+                     <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                     <input name="contact" type="text" id="contact" class="form-control" placeholder="Contact Number" maxlength="15">
+                     </div>
+                     <span class="help-block" id="error"></span>
+                </div>
+                <!-- Message -->
+                <div class="form-group">
+                     <div class="input-group">
+                     <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                     <input name="message" type="text" id="message" class="form-control" placeholder="Message" maxlength="250">
+                     </div>
+                     <span class="help-block" id="error"></span>
+                </div>
+            </div>
+        <input id="btn-email" type="submit" class="button" name="submit" value="Send" />
+        </div>
+        </form>
+    </div>
+
+    <div class="footer">
+        <div class="icon"><a href="home.html"><img src="img/home.png"/></a></div>
+        <div class="icon"><a href="order.html"><img src="img/order.png"/></a></div>
+        <div class="icon"><a href="transaction.html"><img src="img/trans.png"/></a></div>
+        <div class="icon"><a href="about.html"><img src="img/about.png"/></a></div>
+    </div>
+
+</div>
+</body>
+</html>
