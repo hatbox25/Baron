@@ -8,8 +8,10 @@ $(document).ready(function(){
     });
     
     $('#detailTrans').click(function(){
-        document.location = 'register_barber.html'; 
+        document.location = 'transaction.html'; 
     });
+    
+    getTrans();
 });
 
 
@@ -32,4 +34,29 @@ function showList(){
             li[i].style.display = "none";
         }
     }
+}
+
+function getTrans(){
+    $.ajax({
+        type:'POST',
+        url:'./php/get-trans.php',
+        data:{
+            "get":1
+        },
+        async:false,
+        cache:false,
+        success:function(a){
+            if(a == 0){
+                
+            }
+            else{
+                var result = $.parseJSON(a);
+                $('#full').empty();
+                var x=1;
+                $.each(result,function(i,field){
+                    $('#full').append('<tr class="tr"><td>'+ x++ +'</td><td class="t">'+field.id_order+'</td><td class="u">'+field.user+'</td><td class="br">'+field.barber+'</td><td class="df">'+field.rating+'</td><td class="ts">'+field.ord_price+'</td></tr>');
+                });
+            }
+        }
+    });
 }

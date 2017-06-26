@@ -52,6 +52,7 @@ $(document).ready(function(){
                         "id":sessionStorage.getItem('barberID')
                     },
                     async:false,
+                    cache:false,
                     success:function(a){
                         if(a == 0){
                         }else{
@@ -77,6 +78,7 @@ $(document).ready(function(){
                         "id":sessionStorage.getItem('barberID')
                     },
                     async:false,
+                    cache:false,
                     success:function(a){
                         if(a == 0){
                         }else{
@@ -113,6 +115,7 @@ $(document).ready(function(){
                             "rate":score    
                         },
                         async:false,
+                        cache:false,
                         success:function(a){
                             if(a == 0){
 
@@ -247,6 +250,7 @@ $(document).ready(function(){
                 "time":time
             },
             async:false,
+            cache:false,
             success:function(a){
                 if(a == 0){
                     
@@ -286,7 +290,7 @@ $(document).ready(function(){
             }else if(x == 'terima'){
                 $('#tunggu').addClass('hide');
                 $('#cukur').removeClass('hide');
-                $('#timer').html(00 + ":" + 10);
+                $('#timer').html(05 + ":" + 00);
                 startTimer();
                 
                 $('#b_coming').empty();
@@ -318,6 +322,7 @@ $(document).ready(function(){
                     "id":sessionStorage.getItem('orderID')
                 },
                 async:false,
+                cache:false,
                 success:function(a){
                     document.location='order.html';
                 }
@@ -438,6 +443,7 @@ function showBarber(){
             "get":1
         },
         async:false,
+        cache:false,
         success:function(a){
             if(a == 0){
                 $('#ul_barber').empty();
@@ -464,6 +470,7 @@ function showStyle(id_barber){
             "id":id_barber
         },
         async:false,
+        cache:false,
         success:function(a){
             if(a == 0){
                 $('#ul_style').empty();
@@ -493,6 +500,7 @@ function cekOrder(){
             "id":id
         },
         async:false,
+        cache:false,
         success:function(a){
             stat = a;
         }
@@ -510,6 +518,7 @@ function getOrder(){
             "idu":sessionStorage.getItem('userId')
         },
         async:false,
+        cache:false,
         success:function(a){
             if(a == 0){
                 xxx = "nothing";
