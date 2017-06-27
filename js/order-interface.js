@@ -46,7 +46,7 @@ $(document).ready(function(){
                 
                 $.ajax({
                     type:'POST',
-                    url:'./php/order-getbarber.php',
+                    url:'https://bar0n.000webhostapp.com/php/order-getbarber.php',
                     data:{
                         "cek":1,
                         "id":sessionStorage.getItem('barberID')
@@ -59,7 +59,7 @@ $(document).ready(function(){
                             var result = $.parseJSON(a);
                             $('#b_coming').empty();
                             $.each(result,function(i,field){
-                                $('#b_coming').html('<img src="upload/'+field.barber_img+'" width="50%" style="border:5px solid rgba(0,0,0,0.4); border-radius:5px;"><br/><br/><span><strong>'+field.username+'</strong></span><br/><br/><span>'+field.barber_phone+'</span>');
+                                $('#b_coming').html('<img src="https://bar0n.000webhostapp.com/upload/'+field.barber_img+'" width="50%" style="border:5px solid rgba(0,0,0,0.4); border-radius:5px;"><br/><br/><span><strong>'+field.username+'</strong></span><br/><br/><span>'+field.barber_phone+'</span>');
                             });
                         }              
                     }
@@ -72,7 +72,7 @@ $(document).ready(function(){
                 
                 $.ajax({
                     type:'POST',
-                    url:'./php/order-getbarber.php',
+                    url:'https://bar0n.000webhostapp.com/php/order-getbarber.php',
                     data:{
                         "cek":1,
                         "id":sessionStorage.getItem('barberID')
@@ -85,7 +85,7 @@ $(document).ready(function(){
                             var result = $.parseJSON(a);
                             $('#b_pros').empty();
                             $.each(result,function(i,field){
-                                $('#b_pros').html('<img src="upload/'+field.barber_img+'" width="50%" style="border:5px solid rgba(0,0,0,0.4); border-radius:5px;"><br/><br/><span><strong>'+field.username+'</strong></span><br/><br/><span>'+field.barber_phone+'</span>');
+                                $('#b_pros').html('<img src="https://bar0n.000webhostapp.com/upload/'+field.barber_img+'" width="50%" style="border:5px solid rgba(0,0,0,0.4); border-radius:5px;"><br/><br/><span><strong>'+field.username+'</strong></span><br/><br/><span>'+field.barber_phone+'</span>');
                             });
                         }              
                     }
@@ -108,7 +108,7 @@ $(document).ready(function(){
                 $('#btn_rate').click(function(){
                     $.ajax({
                         type:'POST',
-                        url:'./php/order-setrating.php',
+                        url:'https://bar0n.000webhostapp.com/php/order-setrating.php',
                         data:{
                             "set":1,
                             "id":sessionStorage.getItem('orderID'),
@@ -238,7 +238,7 @@ $(document).ready(function(){
         //ADD ORDER + SET AVB BARBER 0
         $.ajax({
             type:'POST',
-            url:'./php/order-process.php',
+            url:'https://bar0n.000webhostapp.com/php/order-process.php',
             data:{
                 "pro":1,
                 "idu":sessionStorage.getItem('userId'),
@@ -316,7 +316,7 @@ $(document).ready(function(){
         if(confirm("Are you sure want to cancel this order")){
             $.ajax({
                 type:'POST',
-                url:'./php/user-batal.php',
+                url:'https://bar0n.000webhostapp.com/php/user-batal.php',
                 data:{
                     "acpt":1,
                     "id":sessionStorage.getItem('orderID')
@@ -438,7 +438,7 @@ function checkSecond(sec) {
 function showBarber(){
     $.ajax({
         type:'POST',
-        url:'./php/get-barber.php',
+        url:'https://bar0n.000webhostapp.com/php/get-barber.php',
         data:{
             "get":1
         },
@@ -454,7 +454,7 @@ function showBarber(){
                 var result = $.parseJSON(a);
                 $('#ul_barber').empty();
                 $.each(result,function(i,field){
-                    $('#ul_barber').append('<label class="pilihan"><li><input type="radio" name="fb" value="'+field.username+'" class="pil_barber"><img src="upload/'+field.barber_img+'" width="20%"><span class="sp_barber">'+field.username+'</span><span class="hiden">'+field.id_barber+'</span><p class="hiden">'+field.barber_about+'</p><a class="hide">'+field.barber_phone+'</a></li></label>');
+                    $('#ul_barber').append('<label class="pilihan"><li><input type="radio" name="fb" value="'+field.username+'" class="pil_barber"><img src="https://bar0n.000webhostapp.com/upload/'+field.barber_img+'" width="20%"><span class="sp_barber">'+field.username+'</span><span class="hiden">'+field.id_barber+'</span><p class="hiden">'+field.barber_about+'</p><a class="hide">'+field.barber_phone+'</a></li></label>');
                 });
             }
         }
@@ -464,7 +464,7 @@ function showBarber(){
 function showStyle(id_barber){
     $.ajax({
         type:'POST',
-        url:'./php/style-barber.php',
+        url:'https://bar0n.000webhostapp.com/php/style-barber.php',
         data:{
             "get":1,
             "id":id_barber
@@ -480,7 +480,7 @@ function showStyle(id_barber){
                 var result = $.parseJSON(a);
                 $('#ul_style').empty();
                 $.each(result,function(i,field){
-                    $('#ul_style').append('<label class="pilih"><li><input type="radio" name="fs" value="'+field.sty_name+'" class="pil_style"/><img src="upload/style/'+id_barber+'/'+field.sty_img+'" width="20%"><span class="sp_style">'+field.sty_name+'</span><span class="price">Rp '+ field.sty_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+'</span><span class="hiden">'+field.id_style+'</span></li></label>');
+                    $('#ul_style').append('<label class="pilih"><li><input type="radio" name="fs" value="'+field.sty_name+'" class="pil_style"/><img src="https://bar0n.000webhostapp.com/upload/style/'+id_barber+'/'+field.sty_img+'" width="20%"><span class="sp_style">'+field.sty_name+'</span><span class="price">Rp '+ field.sty_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+'</span><span class="hiden">'+field.id_style+'</span></li></label>');
                     
                     /* onclick="showHasil(\'#st_hasil\',\'.pil_style:checked\',\'Style Selected : \')"*/
                 });
@@ -494,7 +494,7 @@ function cekOrder(){
     var id = sessionStorage.getItem('orderID');
     $.ajax({
         type:'POST',
-        url:'./php/user-cekorder.php',
+        url:'https://bar0n.000webhostapp.com/php/user-cekorder.php',
         data:{
             "cek":1,
             "id":id
@@ -512,7 +512,7 @@ function getOrder(){
     var xxx = "";
     $.ajax({
         type:'POST',
-        url:'./php/user-getorder.php',
+        url:'https://bar0n.000webhostapp.com/php/user-getorder.php',
         data:{
             "cek":1,
             "idu":sessionStorage.getItem('userId')

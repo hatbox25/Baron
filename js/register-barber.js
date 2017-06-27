@@ -8,7 +8,7 @@ $('document').ready(function(){
         
         $.ajax({
             type:'POST',
-            url:'./php/find.php',
+            url:'https://bar0n.000webhostapp.com/php/find.php',
             data:{
                 "cari":1,
                 "key":key
@@ -40,7 +40,7 @@ $('document').ready(function(){
         $('#cari').val('');
         $.ajax({
             type:'POST',
-            url:'./php/register-barber.php',
+            url:'https://bar0n.000webhostapp.com/php/register-barber.php',
             data:{
                 "cari":1,
                 "key":key,

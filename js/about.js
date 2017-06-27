@@ -81,7 +81,7 @@ $(document).ready(function(){
 function submitForm(){
     $.ajax({
         type:'POST',
-        url:'./php/email.php',
+        url:'https://bar0n.000webhostapp.com/php/email.php',
         data:$('#feedback-form').serialize(),
         success:function(a){
             $('#btn-email').html('&nbsp; Sending...').prop('disabled', true);

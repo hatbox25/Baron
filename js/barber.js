@@ -1,15 +1,18 @@
 $(document).ready(function (e) {
+    $('#edit').addClass('hide');
+    $('#adapesan').addClass('hide');
+    
+    $('#tolak').addClass('hide');
+    $('#cukur').addClass('hide');
+    $('#chg').addClass('hide');
+    $('#end').addClass('hide');
+    
     if(sessionStorage.length == 0){
         //memeriksa jika session tidak ada maka akan kembali ke paga login.html
         document.location = "login.html";   
     }
     
-    $('#adapesan').addClass('hide');
-    $('#edit').addClass('hide');
-    $('#tolak').addClass('hide');
-    $('#cukur').addClass('hide');
-    $('#chg').addClass('hide');
-    $('#end').addClass('hide');
+    
     
     getProfile('#utama') ;
     
@@ -61,7 +64,7 @@ $(document).ready(function (e) {
             var id = sessionStorage.getItem('userId');
             $.ajax({
                 type:'POST',
-                url:'./php/barber-stat.php',
+                url:'https://bar0n.000webhostapp.com/php/barber-stat.php',
                 data:{
                     "toggle":1,
                     "id":id,
@@ -110,7 +113,7 @@ $(document).ready(function (e) {
         var id = sessionStorage.getItem('userId');
         data.append('id',id);
         $.ajax({
-            url: "./php/barber-upload.php", // Url to which the request is send
+            url: "https://bar0n.000webhostapp.com/php/barber-upload.php", // Url to which the request is send
             type: "POST",             // Type of request to be send, called as method
             data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
             contentType: false,       // The content type used when sending data to the server.
@@ -147,7 +150,7 @@ $(document).ready(function (e) {
         var id = sessionStorage.getItem('orderID');
         $.ajax({
             type:'POST',
-            url:'./php/barber-acpt.php',
+            url:'https://bar0n.000webhostapp.com/php/barber-acpt.php',
             data:{
                 "acpt":1,
                 "id":id
@@ -184,7 +187,7 @@ $(document).ready(function (e) {
         if(confirm("Are you sure want to decline this order ?")){
             $.ajax({
                 type:'POST',
-                url:'./php/barber-decl.php',
+                url:'https://bar0n.000webhostapp.com/php/barber-decl.php',
                 data:{
                     "acpt":1,
                     "id":sessionStorage.getItem('orderID'),
@@ -207,7 +210,7 @@ $(document).ready(function (e) {
     $('#ok').click(function(){
         $.ajax({
             type:'POST',
-            url:'./php/barber-ok.php',
+            url:'https://bar0n.000webhostapp.com/php/barber-ok.php',
             data:{
                 "acpt":1,
                 "id":sessionStorage.getItem('orderID'),
@@ -231,7 +234,7 @@ $(document).ready(function (e) {
         var id = sessionStorage.getItem('orderID');
         $.ajax({
             type:'POST',
-            url:'./php/barber-start.php',
+            url:'https://bar0n.000webhostapp.com/php/barber-start.php',
             data:{
                 "acpt":1,
                 "id":id
@@ -259,7 +262,7 @@ $(document).ready(function (e) {
         var id = sessionStorage.getItem('orderID');
         $.ajax({
             type:'POST',
-            url:'./php/barber-finish.php',
+            url:'https://bar0n.000webhostapp.com/php/barber-finish.php',
             data:{
                 "acpt":1,
                 "id":id,
@@ -284,18 +287,14 @@ $(document).ready(function (e) {
         document.location="style.html";
     });
     
-    $('#logout').click(function(){
-        alert("You are successfully logout")
-        sessionStorage.clear();
-        document.location = 'login.html';
-    });
+    
 });
 
 function updateProfile(x,y,z){
     var id = sessionStorage.getItem('userId');
     $.ajax({
         type:'POST',
-        url:'./php/barber-update.php',
+        url:'https://bar0n.000webhostapp.com/php/barber-update.php',
         data:{
             "up":1,
             "id":id,
@@ -319,7 +318,7 @@ function getProfile(x){
     var id = sessionStorage.getItem('userId');
     $.ajax({
         type:'POST',
-        url:'./php/barber-profil.php',
+        url:'https://bar0n.000webhostapp.com/php/barber-profil.php',
         data:{
             "get":1,
             "id":id
@@ -335,11 +334,11 @@ function getProfile(x){
                 $.each(result,function(i,field){
                     if(x == "#utama"){
                         $(x).empty();
-                        $(x).append('<img class="img" src="upload/'+field.barber_img+'"><h3>'+field.username+'</h3><div class="detil"><table class="tog"><tr><td class="l">Not Available</td><td><label class="switch"><input type="checkbox" id="aktif"><div class="slider round"></div></label></td><td class="r">Available</td></tr></table><br/><table><tr><td class="q">Address : </td><td colspan="3">'+field.barber_addr+'</td></tr><tr><td class="q">Phone : </td><td colspan="3">'+field.barber_phone+'</td></tr><tr><td class="q">About : </td><td colspan="3">'+field.barber_about+'</td></tr></table></div><br/><input type="button" value="Edit Detail" id="btn_update" class="button"><input type="button" value="Hair Style" id="btn_style" class="button"><br/><br/><img src="img/logout.png" id="logout" width="40%">');
+                        $(x).append('<img class="img" src="https://bar0n.000webhostapp.com/upload/'+field.barber_img+'"><h3>'+field.username+'</h3><div class="detil"><table class="tog"><tr><td class="l">Not Available</td><td><label class="switch"><input type="checkbox" id="aktif"><div class="slider round"></div></label></td><td class="r">Available</td></tr></table><br/><table><tr><td class="q">Address : </td><td colspan="3">'+field.barber_addr+'</td></tr><tr><td class="q">Phone : </td><td colspan="3">'+field.barber_phone+'</td></tr><tr><td class="q">About : </td><td colspan="3">'+field.barber_about+'</td></tr></table></div><br/><input type="button" value="Edit Detail" id="btn_update" class="button"><input type="button" value="Hair Style" id="btn_style" class="button"><br/><br/>');
                         sessionStorage.setItem('barberID',field.id_barber);
                     }else{
                         $('#prof_pict').empty();
-                        $('#prof_pict').append('<img src="upload/'+field.barber_img+'">');
+                        $('#prof_pict').append('<img src="https://bar0n.000webhostapp.com/upload/'+field.barber_img+'">');
                         $('#detilUP').empty();
                         $('#detilUP').append('<span>Address :</span><input type="text" id="up_addr" value="'+field.barber_addr+'"><span>Phone :</span><input type="number" id="up_phone" value="'+field.barber_phone+'"><span>About :</span><input type="text" id="up_about" value="'+field.barber_about+'">');
                     }
@@ -354,7 +353,7 @@ function cekAvb(){
     var j = 0;
     $.ajax({
         type:'POST',
-        url:'./php/barber-stat.php',
+        url:'https://bar0n.000webhostapp.com/php/barber-stat.php',
         data:{
             "cek":1,
             "id":id
@@ -386,7 +385,7 @@ function cekOrder(){
     var id = sessionStorage.getItem('barberID');
     $.ajax({
         type:'POST',
-        url:'./php/barber-cekorder.php',
+        url:'https://bar0n.000webhostapp.com/php/barber-cekorder.php',
         data:{
             "cek":1,
             "id":id
@@ -405,7 +404,7 @@ function getOrder(){
     var stat = "";
     $.ajax({
         type:'POST',
-        url:'./php/barber-getorder.php',
+        url:'https://bar0n.000webhostapp.com/php/barber-getorder.php',
         data:{
             "cek":1,
             "id":id

@@ -21,7 +21,7 @@ $(document).ready(function(){
         var id = sessionStorage.getItem('userId');
         $.ajax({
             type:'POST',
-            url:'./php/user-trans.php',
+            url:'https://bar0n.000webhostapp.com/php/user-trans.php',
             data:{
                 "get":1,
                 "id":id
@@ -47,7 +47,7 @@ $(document).ready(function(){
         var id = sessionStorage.getItem('userId');
         $.ajax({
             type:'POST',
-            url:'./php/barber-trans.php',
+            url:'https://bar0n.000webhostapp.com/php/barber-trans.php',
             data:{
                 "get":1,
                 "id":id
@@ -73,7 +73,7 @@ $(document).ready(function(){
         var id = sessionStorage.getItem('userId');
         $.ajax({
             type:'POST',
-            url:'./php/admin-trans.php',
+            url:'https://bar0n.000webhostapp.com/php/admin-trans.php',
             data:{
                 "get":1,
                 "id":id

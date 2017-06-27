@@ -108,12 +108,18 @@ $(document).ready(function(){
            }); 
         });
     });
+    
+    $('#logout').click(function(){
+        alert("You are successfully logout")
+        sessionStorage.clear();
+        document.location = 'login.html';
+    });
 })
 
 function showBarber(){
     $.ajax({
         type:'POST',
-        url:'./php/get-home-barber.php',
+        url:'https://bar0n.000webhostapp.com/php/get-home-barber.php',
         data:{
             "get":1
         },
@@ -122,7 +128,7 @@ function showBarber(){
         success:function(a){
             if(a == 0){
                 $('#ul_barber').empty();
-                $('#ul_barber').append('<span>There\'s no barber registered</span>');
+                $('#ul_barber').append('<span>There\'s no barber use this app</span>');
             }
             else{
                 var result = $.parseJSON(a);
@@ -130,7 +136,7 @@ function showBarber(){
                 $.each(result,function(i,field){
                     var x = parseFloat(field.skor).toFixed(2);
                     
-                    $('#ul_barber').append('<label class="barber"><li><img src="upload/'+field.barber_img+'" width="20%"><span class="sp_barber">'+field.username+'</span><span class="rate">'+x+'</span><span class="hide" id="ph">'+field.barber_phone+'</span></li></label>');
+                    $('#ul_barber').append('<label class="barber"><li><img src="https://bar0n.000webhostapp.com/upload/'+field.barber_img+'" width="20%"><span class="sp_barber">'+field.username+'</span><span class="rate">'+x+'</span><span class="hide" id="ph">'+field.barber_phone+'</span></li></label>');
                 });
             }
         }
@@ -140,7 +146,7 @@ function showBarber(){
 function showStyle(){
     $.ajax({
         type:'POST',
-        url:'./php/get-home-style.php',
+        url:'https://bar0n.000webhostapp.com/php/get-home-style.php',
         data:{
             "get":1
         },
@@ -155,7 +161,7 @@ function showStyle(){
                 var result = $.parseJSON(a);
                 $('#ul_style').empty();
                 $.each(result,function(i,field){
-                    $('#ul_style').append('<label class="style"><li><img src="upload/style/'+field.id_barber+'/'+field.sty_img+'" width="20%"><span class="sp_style">'+field.sty_name+'</span><span class="price">Rp '+ field.sty_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+'</span></li><span class="hide">'+field.username+'</span></label>');
+                    $('#ul_style').append('<label class="style"><li><img src="https://bar0n.000webhostapp.com/upload/style/'+field.id_barber+'/'+field.sty_img+'" width="20%"><span class="sp_style">'+field.sty_name+'</span><span class="price">Rp '+ field.sty_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+'</span></li><span class="hide">'+field.username+'</span></label>');
                 });
             }
         }

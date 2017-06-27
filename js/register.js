@@ -23,7 +23,7 @@ $(document).ready(function(){
                 required : true,
                 validemail: true,
                 remote: {
-                    url: "./php/check-email.php",
+                    url: "https://bar0n.000webhostapp.com/php/check-email.php",
                     type: 'POST',
                     data: {
                         email: function() {
@@ -79,7 +79,7 @@ $(document).ready(function(){
 function submitFor(){
     $.ajax({
         type:'POST',
-        url:'./php/register.php',
+        url:'https://bar0n.000webhostapp.com/php/register.php',
         data:$('#register-form').serialize(),
         async:false,
         cache:false,

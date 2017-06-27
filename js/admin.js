@@ -39,7 +39,7 @@ function showList(){
 function getTrans(){
     $.ajax({
         type:'POST',
-        url:'./php/get-trans.php',
+        url:'https://bar0n.000webhostapp.com/php/get-trans.php',
         data:{
             "get":1
         },

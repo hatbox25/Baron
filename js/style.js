@@ -50,7 +50,7 @@ $(document).ready(function() {
             data.append('sty',sty);
             data.append('prc',prc);
             $.ajax({
-                url: "./php/style-upload.php", // Url to which the request is send
+                url: "https://bar0n.000webhostapp.com/php/style-upload.php", // Url to which the request is send
                 type: "POST",             // Type of request to be send, called as method
                 data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
                 contentType: false,       // The content type used when sending data to the server.
@@ -102,7 +102,7 @@ $(document).ready(function() {
                 //alert($st_img);
                 $.ajax({
                     type:'POST',
-                    url:'./php/style-delete.php',
+                    url:'https://bar0n.000webhostapp.com/php/style-delete.php',
                     data:{
                         "del":1,
                         "id":$st_id,
@@ -147,7 +147,7 @@ $(document).ready(function() {
             data.append('sty',sty);
             data.append('prc',prc);
             $.ajax({
-                url: "./php/style-update.php", // Url to which the request is send
+                url: "https://bar0n.000webhostapp.com/php/style-update.php", // Url to which the request is send
                 type: "POST",             // Type of request to be send, called as method
                 data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
                 contentType: false,       // The content type used when sending data to the server.
@@ -172,7 +172,7 @@ function refStyle(){
     var id = sessionStorage.getItem('barberID');
     $.ajax({
         type:'POST',
-        url:'./php/style-barber.php',
+        url:'https://bar0n.000webhostapp.com/php/style-barber.php',
         data:{
             "get":1,
             "id":id
@@ -188,7 +188,7 @@ function refStyle(){
                 var result = $.parseJSON(a);
                 $('#ul_style').empty();
                 $.each(result,function(i,field){
-                    $('#ul_style').append('<label class="style"><li><img src="upload/style/'+id+'/'+field.sty_img+'" width="20%"><span class="sp_style">'+field.sty_name+'</span><span class="price">Rp '+ field.sty_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+'</span></li><span class="hide">'+field.id_style+'</span></label>');
+                    $('#ul_style').append('<label class="style"><li><img src="https://bar0n.000webhostapp.com/upload/style/'+id+'/'+field.sty_img+'" width="20%"><span class="sp_style">'+field.sty_name+'</span><span class="price">Rp '+ field.sty_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+'</span></li><span class="hide">'+field.id_style+'</span></label>');
                 });
             }
         }

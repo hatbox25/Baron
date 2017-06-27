@@ -1,5 +1,5 @@
 $('document').ready(function(){
-
+    
     var eregex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
     $.validator.addMethod("validemail", function( value, element ) {
@@ -47,7 +47,7 @@ $('document').ready(function(){
 function submitForm(){
    $.ajax({
        type:'POST',
-       url:'./php/login.php',
+       url:'https://bar0n.000webhostapp.com/php/login.php',
        data:$('#login-form').serialize(),
        async:false,
        cache:false,
