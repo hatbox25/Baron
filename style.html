@@ -7,21 +7,26 @@
     <link rel="stylesheet" href="css/styleST.css">
 	<script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/style.js"></script>
-    
+	<style>
+		.warning {
+			background: #FFFFAA;
+			border: 1px solid #FFAD33;
+		}
+	</style>
 </head>
-	
+
 <body>
 <div id="normal" class="container">
-    
-    
+
+
 	<div class="header">
 		<div class="Logo" align="center">
 			<img src="img/BARON.png">
 		</div>
 	</div>
-    
+
     <div class="main" id="utama">
-        <div id="pop">    
+        <div id="pop">
             <img src="img/adam.jpg">
             <span class="toggle"><strong>X</strong></span>
             <br/>
@@ -40,7 +45,8 @@
                 <br/>
                 <form id="up_style" method="post" enctype="multipart/form-data">
                     <div class="teks">
-                        <span>Style Image</span><br/>
+                        <span>Style Image </span><span class="warning">(max size 100kb)</span><br/>
+
                         <input type="file" name="st_file" id="st_file"><br/>
                         <span>Style Name</span><br/>
                         <input type="text" name="st_name" placeholder="Style Name" id="st_name"><br/>
@@ -68,22 +74,22 @@
                 <br/>
                 <form id="e_up_style" method="post" enctype="multipart/form-data">
                     <div class="teksE">
-                        
+
                     </div>
                 </form>
                 <input type="button" id="batal" class="button" value="Cancel">
                 <input type="button" id="update" class="button" value="Update"><br/><br/>
             </div>
         </div>
-        
+
     </div>
-    
+
     <div class="footer">
-        <div class="icon"><a href="home.html"><img src="img/home.png"/></a></div> 
-        <div class="icon"><a href="barber.html"><img src="img/profile-sel.png"/></a></div> 
-        <div class="icon"><a href="transaction.html"><img src="img/trans-sel.png"/></a></div> 
-        <div class="icon"><a href="about.html"><img src="img/about.png"/></a></div> 
+        <div class="icon"><a href="home.html"><img src="img/home.png"/></a></div>
+        <div class="icon"><a href="barber.html"><img src="img/profile-sel.png"/></a></div>
+        <div class="icon"><a href="transaction.html"><img src="img/trans-sel.png"/></a></div>
+        <div class="icon"><a href="about.html"><img src="img/about.png"/></a></div>
     </div>
 </div>
-</body>   
+</body>
 </html>

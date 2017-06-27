@@ -1,4 +1,18 @@
 $(document).ready(function(){
+    /* FOOTER SETTING */
+    $('#user').addClass('hide');
+    $('#barber').addClass('hide');
+    $('#admin').addClass('hide');
+
+    var role = sessionStorage.getItem('role');
+    if(role == 'user'){
+        $('#user').removeClass('hide');
+    }else if(role == 'barber'){
+        $('#barber').removeClass('hide');
+    }else{
+        $('#admin').removeClass('hide');
+    }
+    /* END FOOTER SETTING */
 
     var nameregex = /^[a-zA-Z ]+$/;
 
@@ -69,7 +83,6 @@ function submitForm(){
         type:'POST',
         url:'./php/email.php',
         data:$('#feedback-form').serialize(),
-        async:false,
         success:function(a){
             $('#btn-email').html('&nbsp; Sending...').prop('disabled', true);
             $('input[type=text],input[type=email]').prop('disabled', true);
@@ -80,6 +93,7 @@ function submitForm(){
                var result = $.parseJSON(a);
                if(result.status === 'success'){
                    $('#errorDiv').slideDown('fast', function(){
+                       console.log(result.message);
                        $('#errorDiv').append('<div class="alert alert-info">'+result.message+'</div>');
                        $("#feedback-form").trigger('reset');
                        $('input[type=text],input[type=email]').prop('disabled', false);
@@ -88,7 +102,6 @@ function submitForm(){
                 }else{
                    $('#errorDiv').slideDown('fast', function(){
                        $('#errorDiv').append('<div class="alert alert-danger">'+result.message+'</div>');
-                       $("#feedback-form").trigger('reset');
                        $('input[type=text],input[type=email]').prop('disabled', false);
                        $('#btn-email').html('&nbsp; Send').prop('disabled', false);
                    }).delay(4000).slideUp('fast');

@@ -1,12 +1,10 @@
 $(document).ready(function(){
+    /* FOOTER SETTING */
     $('#user').addClass('hide');
     $('#barber').addClass('hide');
     $('#admin').addClass('hide');
-    
+
     var role = sessionStorage.getItem('role');
-    
-    alert(role);
-    
     if(role == 'user'){
         $('#user').removeClass('hide');
     }else if(role == 'barber'){
@@ -14,4 +12,5 @@ $(document).ready(function(){
     }else{
         $('#admin').removeClass('hide');
     }
+    /* END FOOTER SETTING */
 });

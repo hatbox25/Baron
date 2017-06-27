@@ -25,15 +25,25 @@
 		// Message lines should not exceed 70 characters (PHP rule), so wrap it.
 		$sendmessage = wordwrap($sendmessage, 70);
 
-		// Send mail by PHP Mail Function.
-		// $result = mail("septiananday@gmail.com", $subject, $sendmessage, $headers);
+		//This should be done in your php.ini, but this is how to do it if you don't have access to that
+		date_default_timezone_set('Etc/UTC');
 		$mail = new PHPMailer;
 
 		$mail->isSMTP();
+		//Enable SMTP debugging
+		// 0 = off (for production use)
+		// 1 = client messages
+		// 2 = client and server messages
+		$mail->SMTPDebug = 0;
+		//Ask for HTML-friendly debug output
+		$mail->Debugoutput = 'html';
+
 		$mail->Host = 'smtp.gmail.com';
 		$mail->SMTPAuth = true;
 		$mail->Username = 'barber.online2017@gmail.com';
 		$mail->Password = 'baron2017';
+		$mail->Port = 587;
+
 		$mail->SMTPSecure = 'tls';
 
 		$mail->From = 'barber.online2017@gmail.com';
@@ -51,19 +61,13 @@
 		if($mail->send()) {
 			$response['status'] = 'success';
 			$response['message'] = '<span class="glyphicon glyphicon-ok"></span> &nbsp; We Will contact You as soon as possible';
+			$response['log'] = $mail->ErrorInfo;
 		}
 		else {
 			$response['status'] = 'error'; // could not register
 			$response['message'] = '<span class="glyphicon glyphicon-info-sign"></span> &nbsp; We have encountered a problem, please try again :)';
+			$response['log'] = $mail->ErrorInfo;
 		}
-
-		// if ($result) {
-		// 	$response['status'] = 'success';
-		// 	$response['message'] = '<span class="glyphicon glyphicon-ok"></span> &nbsp; We Will contact You as soon as possible';
-        // } else {
-        //     $response['status'] = 'error'; // could not register
-		// 	$response['message'] = '<span class="glyphicon glyphicon-info-sign"></span> &nbsp; We have encountered a problem, please try again :)';
-        // }
 	}
 	echo json_encode($response);
 ?>
