@@ -7,7 +7,7 @@ $(document).ready(function (e) {
     $('#chg').addClass('hide');
     $('#end').addClass('hide');
     
-    if(sessionStorage.length == 0){
+    if(localStorage.length == 0){
         //memeriksa jika session tidak ada maka akan kembali ke paga login.html
         document.location = "login.html";   
     }
@@ -61,7 +61,7 @@ $(document).ready(function (e) {
     $('.switch').on('click',function(){
         x++;
         if(x%2 != 0){
-            var id = sessionStorage.getItem('userId');
+            var id = localStorage.getItem('userId');
             $.ajax({
                 type:'POST',
                 url:'https://bar0n.000webhostapp.com/php/barber-stat.php',
@@ -110,7 +110,7 @@ $(document).ready(function (e) {
         e.preventDefault();
         var form = $('form')[0];
         var data = new FormData(form);
-        var id = sessionStorage.getItem('userId');
+        var id = localStorage.getItem('userId');
         data.append('id',id);
         $.ajax({
             url: "https://bar0n.000webhostapp.com/php/barber-upload.php", // Url to which the request is send
@@ -147,7 +147,7 @@ $(document).ready(function (e) {
     });
     
     $('#acpt').click(function(){
-        var id = sessionStorage.getItem('orderID');
+        var id = localStorage.getItem('orderID');
         $.ajax({
             type:'POST',
             url:'https://bar0n.000webhostapp.com/php/barber-acpt.php',
@@ -159,7 +159,8 @@ $(document).ready(function (e) {
             cache:false,
             success:function(a){
                 if(a == 0){
-                  //  alert("error");
+                    alert("Order Time OUT !");
+                    document.location='barber.html';
                 }
                 else{
                     alert("Order Accepted !");
@@ -190,8 +191,8 @@ $(document).ready(function (e) {
                 url:'https://bar0n.000webhostapp.com/php/barber-decl.php',
                 data:{
                     "acpt":1,
-                    "id":sessionStorage.getItem('orderID'),
-                    "idb":sessionStorage.getItem('barberID')
+                    "id":localStorage.getItem('orderID'),
+                    "idb":localStorage.getItem('barberID')
                 },
                 async:false,
                 cache:false,
@@ -213,8 +214,8 @@ $(document).ready(function (e) {
             url:'https://bar0n.000webhostapp.com/php/barber-ok.php',
             data:{
                 "acpt":1,
-                "id":sessionStorage.getItem('orderID'),
-                "idb":sessionStorage.getItem('barberID')
+                "id":localStorage.getItem('orderID'),
+                "idb":localStorage.getItem('barberID')
             },
             async:false,
             cache:false,
@@ -231,7 +232,7 @@ $(document).ready(function (e) {
     
       //START CUKUR
     $('#begin').click(function(){
-        var id = sessionStorage.getItem('orderID');
+        var id = localStorage.getItem('orderID');
         $.ajax({
             type:'POST',
             url:'https://bar0n.000webhostapp.com/php/barber-start.php',
@@ -259,14 +260,14 @@ $(document).ready(function (e) {
             
         var today = new Date();
         var time = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours() + ':' + today.getMinutes();    
-        var id = sessionStorage.getItem('orderID');
+        var id = localStorage.getItem('orderID');
         $.ajax({
             type:'POST',
             url:'https://bar0n.000webhostapp.com/php/barber-finish.php',
             data:{
                 "acpt":1,
                 "id":id,
-                "idb":sessionStorage.getItem('barberID'),
+                "idb":localStorage.getItem('barberID'),
                 "time":time
             },
             async:false,
@@ -291,7 +292,7 @@ $(document).ready(function (e) {
 });
 
 function updateProfile(x,y,z){
-    var id = sessionStorage.getItem('userId');
+    var id = localStorage.getItem('userId');
     $.ajax({
         type:'POST',
         url:'https://bar0n.000webhostapp.com/php/barber-update.php',
@@ -315,7 +316,7 @@ function updateProfile(x,y,z){
 }
 
 function getProfile(x){
-    var id = sessionStorage.getItem('userId');
+    var id = localStorage.getItem('userId');
     $.ajax({
         type:'POST',
         url:'https://bar0n.000webhostapp.com/php/barber-profil.php',
@@ -335,7 +336,7 @@ function getProfile(x){
                     if(x == "#utama"){
                         $(x).empty();
                         $(x).append('<img class="img" src="https://bar0n.000webhostapp.com/upload/'+field.barber_img+'"><h3>'+field.username+'</h3><div class="detil"><table class="tog"><tr><td class="l">Not Available</td><td><label class="switch"><input type="checkbox" id="aktif"><div class="slider round"></div></label></td><td class="r">Available</td></tr></table><br/><table><tr><td class="q">Address : </td><td colspan="3">'+field.barber_addr+'</td></tr><tr><td class="q">Phone : </td><td colspan="3">'+field.barber_phone+'</td></tr><tr><td class="q">About : </td><td colspan="3">'+field.barber_about+'</td></tr></table></div><br/><input type="button" value="Edit Detail" id="btn_update" class="button"><input type="button" value="Hair Style" id="btn_style" class="button"><br/><br/>');
-                        sessionStorage.setItem('barberID',field.id_barber);
+                        localStorage.setItem('barberID',field.id_barber);
                     }else{
                         $('#prof_pict').empty();
                         $('#prof_pict').append('<img src="https://bar0n.000webhostapp.com/upload/'+field.barber_img+'">');
@@ -349,7 +350,7 @@ function getProfile(x){
 }
 
 function cekAvb(){
-    var id = sessionStorage.getItem('userId');
+    var id = localStorage.getItem('userId');
     var j = 0;
     $.ajax({
         type:'POST',
@@ -382,7 +383,7 @@ function cekAvb(){
 
 function cekOrder(){
     var stat;
-    var id = sessionStorage.getItem('barberID');
+    var id = localStorage.getItem('barberID');
     $.ajax({
         type:'POST',
         url:'https://bar0n.000webhostapp.com/php/barber-cekorder.php',
@@ -400,7 +401,7 @@ function cekOrder(){
 }
 
 function getOrder(){
-    var id = sessionStorage.getItem('barberID');
+    var id = localStorage.getItem('barberID');
     var stat = "";
     $.ajax({
         type:'POST',
@@ -420,7 +421,7 @@ function getOrder(){
                 $.each(result,function(i,field){
                     $('.detil').empty();
                     $('.detil').html('<tr><td class="q">Name : </td><td colspan="3">'+field.username+'</td></tr><tr><td class="q">Address : </td><td colspan="3">'+field.ord_address+'</td></tr><tr><td class="q">Phone : </td><td colspan="3">'+field.ord_phone+'</td></tr><tr><td class="q">Style : </td><td colspan="3">'+field.sty_name+'</td></tr>');
-                    sessionStorage.setItem('orderID',field.id_order);
+                    localStorage.setItem('orderID',field.id_order);
                     stat = field.ord_status;
                 });
             }

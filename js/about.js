@@ -4,7 +4,7 @@ $(document).ready(function(){
     $('#barber').addClass('hide');
     $('#admin').addClass('hide');
 
-    var role = sessionStorage.getItem('role');
+    var role = localStorage.getItem('role');
     if(role == 'user'){
         $('#user').removeClass('hide');
     }else if(role == 'barber'){

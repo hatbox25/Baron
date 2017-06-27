@@ -3,8 +3,8 @@ $(document).ready(function(){
     $('#barber').addClass('hide');
     $('#admin').addClass('hide');
     
-    var role = sessionStorage.getItem('role');
-    var uname = sessionStorage.getItem('userName');
+    var role = localStorage.getItem('role');
+    var uname = localStorage.getItem('userName');
     
     /*SLIDE*/
     $('#showB').slideUp();
@@ -36,7 +36,7 @@ $(document).ready(function(){
             $('#showS').slideUp();
         }
     });
-    
+   
     /*END SLIDE*/
     
     if(role == 'user'){
@@ -111,7 +111,7 @@ $(document).ready(function(){
     
     $('#logout').click(function(){
         alert("You are successfully logout")
-        sessionStorage.clear();
+        localStorage.clear();
         document.location = 'login.html';
     });
 })

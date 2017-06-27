@@ -4,21 +4,24 @@ $(document).ready(function(){
     $('#barber').addClass('hide');
     $('#admin').addClass('hide');
 
-    var role = sessionStorage.getItem('role');
+    var role = localStorage.getItem('role');
     if(role == 'user'){
         $('#user').removeClass('hide');
-        getUserTransaction('#user_trans');
+        getUserTransaction();
     }else if(role == 'barber'){
         $('#barber').removeClass('hide');
-        getBarberTransaction('#barber_trans');
+        getBarberTransaction();
     }else{
         $('#admin').removeClass('hide');
-        getAdminTransaction('#admin_trans') ;
+        getAdminTransaction() ;
     }
     /* END FOOTER SETTING */
 
-    function getUserTransaction(role){
-        var id = sessionStorage.getItem('userId');
+    
+});
+
+function getUserTransaction(){
+        var id = localStorage.getItem('userId');
         $.ajax({
             type:'POST',
             url:'https://bar0n.000webhostapp.com/php/user-trans.php',
@@ -34,8 +37,8 @@ $(document).ready(function(){
                 }
                 else{
                     var result = $.parseJSON(a);
+                    $('#user_trans').empty();
                     $.each(result,function(i,row){
-                        $('#user_trans').empty();
                         $('#user_trans').append('<tr><td>'+row.dt_order+'</td><td>'+row.barber+'</td><td>'+row.sty_name+'</td><td>'+row.ord_status+'</td><td>'+row.rating+'</td><td>'+row.ord_price+'</td></tr>');
                     });
                 }
@@ -43,8 +46,8 @@ $(document).ready(function(){
         });
     }
 
-    function getBarberTransaction(role){
-        var id = sessionStorage.getItem('userId');
+    function getBarberTransaction(){
+        var id = localStorage.getItem('userId');
         $.ajax({
             type:'POST',
             url:'https://bar0n.000webhostapp.com/php/barber-trans.php',
@@ -60,8 +63,9 @@ $(document).ready(function(){
                 }
                 else{
                     var result = $.parseJSON(a);
+                    $('#barber_trans').empty();
                     $.each(result,function(i,row){
-                        $('#barber_trans').empty();
+                        
                         $('#barber_trans').append('<tr><td>'+row.dt_order+'</td><td>'+row.user+'</td><td>'+row.sty_name+'</td><td>'+row.ord_status+'</td><td>'+row.rating+'</td><td>'+row.ord_price+'</td></tr>');
                     });
                 }
@@ -69,8 +73,8 @@ $(document).ready(function(){
         });
     }
 
-    function getAdminTransaction(role){
-        var id = sessionStorage.getItem('userId');
+    function getAdminTransaction(){
+        var id = localStorage.getItem('userId');
         $.ajax({
             type:'POST',
             url:'https://bar0n.000webhostapp.com/php/admin-trans.php',
@@ -86,12 +90,12 @@ $(document).ready(function(){
                 }
                 else{
                     var result = $.parseJSON(a);
+                    $('#admin_trans').empty();
                     $.each(result,function(i,row){
-                        $('#admin_trans').empty();
+                        
                         $('#admin_trans').append('<tr><td>'+row.dt_order+'</td><td>'+row.barber+'</td><td>'+row.user+'</td><td>'+row.ord_status+'</td><td>'+row.rating+'</td><td>'+row.ord_price+'</td></tr>');
                     });
                 }
             }
         });
     }
-});

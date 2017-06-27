@@ -27,17 +27,22 @@ $(document).ready(function(){
     
     var now = new Date();
     
-    
+    var timeout = 1;
     var stIn = setInterval(function(){
         var xx = getOrder();
         if(xx == 'nothing' || xx == 'batal'){
             clearInterval(stIn);
-            
         }else{
             $("#pesan").addClass("hide");
             $("#processing").removeClass("hide");
             if(xx == 'proses'){
                 $('#tunggu').removeClass('hide');
+                if(timeout == 1){
+                    setTimeout(function(){
+                        clearInterval(stIn);  
+                        timeOUT();
+                    },30000);
+                }
             }else if(xx == 'terima'){
                 $('#cukur').removeClass('hide');
                 $('#tunggu').addClass('hide');
@@ -49,7 +54,7 @@ $(document).ready(function(){
                     url:'https://bar0n.000webhostapp.com/php/order-getbarber.php',
                     data:{
                         "cek":1,
-                        "id":sessionStorage.getItem('barberID')
+                        "id":localStorage.getItem('barberID')
                     },
                     async:false,
                     cache:false,
@@ -75,7 +80,7 @@ $(document).ready(function(){
                     url:'https://bar0n.000webhostapp.com/php/order-getbarber.php',
                     data:{
                         "cek":1,
-                        "id":sessionStorage.getItem('barberID')
+                        "id":localStorage.getItem('barberID')
                     },
                     async:false,
                     cache:false,
@@ -111,7 +116,7 @@ $(document).ready(function(){
                         url:'https://bar0n.000webhostapp.com/php/order-setrating.php',
                         data:{
                             "set":1,
-                            "id":sessionStorage.getItem('orderID'),
+                            "id":localStorage.getItem('orderID'),
                             "rate":score    
                         },
                         async:false,
@@ -224,7 +229,7 @@ $(document).ready(function(){
             
             $('.barber').html('<div class="disp"><h4>Barber</h4><img src="'+img_barber+'"><br/><span>'+sel_barber+'</span></div>');
             $('.style').html('<div class="disp"><h4>Style</h4><img src="'+img_style+'"><br/><span>'+sel_style+'</span></div>');
-            var o_name = sessionStorage.getItem('userName');
+            var o_name = localStorage.getItem('userName');
             $('.sum_text').html('<tr><td class="ts">Name</td><td>:</td><td class="td">'+o_name+'</td></tr><tr><td class="ts">Address</td><td>:</td><td class="td">'+sel_addres+'</td></tr><tr><td class="ts">Phone</td><td>:</td><td class="td">'+sel_phone+'</td></tr><tr><td class="ts">Order date</td><td>:</td><td class="td">'+sel_date+'</td></tr><tr><td class="ts">Order time</td><td>:</td><td class="td">'+sel_time+'</td></tr>');
             
         }else{
@@ -241,7 +246,7 @@ $(document).ready(function(){
             url:'https://bar0n.000webhostapp.com/php/order-process.php',
             data:{
                 "pro":1,
-                "idu":sessionStorage.getItem('userId'),
+                "idu":localStorage.getItem('userId'),
                 "idb":sel_b_id,
                 "ids":sel_s_id,
                 "addr":sel_addres,
@@ -260,7 +265,8 @@ $(document).ready(function(){
                         alert(a);
                     }else{
                         alert("Your order is being process");
-                        sessionStorage.setItem('orderID',a);
+                        localStorage.setItem('orderID',a);
+                        localStorage.setItem('barberID',sel_b_id);
                         $('#tunggu').removeClass('hide');
                     }
                 }
@@ -268,6 +274,10 @@ $(document).ready(function(){
         });
         
         var count =  0;
+        
+        setTimeout(function(){
+            timeOUT();
+        },30000);
         
         var interval = setInterval(function(){
             var x = cekOrder();
@@ -319,7 +329,7 @@ $(document).ready(function(){
                 url:'https://bar0n.000webhostapp.com/php/user-batal.php',
                 data:{
                     "acpt":1,
-                    "id":sessionStorage.getItem('orderID')
+                    "id":localStorage.getItem('orderID')
                 },
                 async:false,
                 cache:false,
@@ -491,7 +501,7 @@ function showStyle(id_barber){
 
 function cekOrder(){
     var stat;
-    var id = sessionStorage.getItem('orderID');
+    var id = localStorage.getItem('orderID');
     $.ajax({
         type:'POST',
         url:'https://bar0n.000webhostapp.com/php/user-cekorder.php',
@@ -515,7 +525,7 @@ function getOrder(){
         url:'https://bar0n.000webhostapp.com/php/user-getorder.php',
         data:{
             "cek":1,
-            "idu":sessionStorage.getItem('userId')
+            "idu":localStorage.getItem('userId')
         },
         async:false,
         cache:false,
@@ -527,12 +537,35 @@ function getOrder(){
             else{
                 var result = $.parseJSON(a);
                 $.each(result,function(i,field){
-                    sessionStorage.setItem('orderID',field.id_order);
-                    sessionStorage.setItem('barberID',field.id_barber);
+                    localStorage.setItem('orderID',field.id_order);
+                    localStorage.setItem('barberID',field.id_barber);
                     xxx = field.ord_status;
                 });
             }
         }
     });
     return xxx;
+}
+
+function timeOUT(){
+    $.ajax({
+        type:'POST',
+        url:'https://bar0n.000webhostapp.com/php/order-timeout.php',
+        data:{
+            "out":1,
+            "id":localStorage.getItem('orderID'),
+            "idb":localStorage.getItem('barberID')
+        },
+        async:false,
+        cache:false,
+        success:function(a){
+            if(a == 0){
+              //  alert("error");
+            }
+            else{
+                alert("Time Out");
+                document.location='order.html';
+            }
+        }
+    });
 }

@@ -1,4 +1,6 @@
 $('document').ready(function(){
+    if(localStorage.getItem('userId'))
+        document.location='home.html';
     
     var eregex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
@@ -59,19 +61,19 @@ function submitForm(){
                var result = $.parseJSON(a);
                $.each(result,function(i,field){
                    if(field.akses === 'user'){
-                       sessionStorage.setItem('userId',field.id_user);
-                       sessionStorage.setItem('role',field.akses);
-                       sessionStorage.setItem('userName',field.username);
+                       localStorage.setItem('userId',field.id_user);
+                       localStorage.setItem('role',field.akses);
+                       localStorage.setItem('userName',field.username);
                        document.location.replace('home.html');
                    }else if(field.akses === 'barber'){
-                       sessionStorage.setItem('userId',field.id_user);
-                       sessionStorage.setItem('role',field.akses);
-                       sessionStorage.setItem('userName',field.username);
+                       localStorage.setItem('userId',field.id_user);
+                       localStorage.setItem('role',field.akses);
+                       localStorage.setItem('userName',field.username);
                        document.location.replace('home.html');
                    }else{
-                       sessionStorage.setItem('userId',field.id_user);
-                       sessionStorage.setItem('role',field.akses);
-                       sessionStorage.setItem('userName',field.username);
+                       localStorage.setItem('userId',field.id_user);
+                       localStorage.setItem('role',field.akses);
+                       localStorage.setItem('userName',field.username);
                        document.location.replace('home.html');
                    }
                });

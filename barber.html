@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="css/style.css">
 	<script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/barber.js"></script>
-    
+    <style>
+		.warning {
+			background: #FFFFAA;
+			border: 1px solid #FFAD33;
+		}
+	</style>
 </head>
 	
 <body>
@@ -35,7 +40,7 @@
                     <div id="chg">
                         <form id="uploadimage" action="" method="post" enctype="multipart/form-data">
                             <div id="selectImage">
-                                <label>Select Your Image</label><br/>
+                                <label>Select Your Image</label><br/><span class="warning">(max size 100kb)</span><br/>
                                 <input type="file" name="file" id="file" required />
                                 <input type="button" id="btn" value="Upload" class="button" />
                             </div>

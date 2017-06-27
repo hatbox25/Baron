@@ -44,7 +44,7 @@ $(document).ready(function() {
             e.preventDefault();
             var form = $('#up_style')[0];
             var data = new FormData(form);
-            var id = sessionStorage.getItem('barberID');
+            var id = localStorage.getItem('barberID');
 
             data.append('id',id);
             data.append('sty',sty);
@@ -141,7 +141,7 @@ $(document).ready(function() {
             var form = $('#e_up_style')[0];
             var data = new FormData(form);
 
-            var id = sessionStorage.getItem('barberID');    
+            var id = localStorage.getItem('barberID');    
             data.append('id',id);
             data.append('ids',st_id);
             data.append('sty',sty);
@@ -169,7 +169,7 @@ $(document).ready(function() {
 });
 
 function refStyle(){
-    var id = sessionStorage.getItem('barberID');
+    var id = localStorage.getItem('barberID');
     $.ajax({
         type:'POST',
         url:'https://bar0n.000webhostapp.com/php/style-barber.php',
